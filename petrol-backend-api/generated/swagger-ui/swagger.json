@@ -1,0 +1,12 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Diya Mane Petrol Single Page Portal"
+  },
+  "host" : "www.localhost.com:1010",
+  "tags" : [ {
+    "name" : "VehicleOwner"
+  } ],
+  "schemes" : [ "http" ]
+}

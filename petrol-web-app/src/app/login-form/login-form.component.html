@@ -1,0 +1,34 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+
+	<div *ngIf="loginForm.errors" class="alert alert-danger">Login Failed
+		
+	</div>
+
+	<div class="form-group">
+		<label for="userName">UserName</label>
+		<input
+			formControlName="userName"
+			id="userName" 
+			type="text" 
+			class="form-control">
+			<div *ngIf="userName.pending" >Validator is in progresss</div>
+			<div *ngIf="userName.touched && userName.invalid"  class="alert alert-danger">
+				<div *ngIf="userName.errors.required">Username is required</div>
+				<div *ngIf="userName.errors.minlength">Username should be minimum of {{ userName.errors.minlength.requiredLength}} but is {{
+					userName.errors.minlength.actualLength }}</div>
+				<div *ngIf="userName.errors.pattern">Username should be aplnuemeric. Special char allwoed _ and -.</div>
+				<div *ngIf="userName.errors.isDuplicateUserName">Username is all taken</div>
+			</div>
+	</div>
+
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input 
+			formControlName="passWord"pramodPraPRDpra
+			id="password"
+			type="text" 
+			class="form-control">
+	</div>
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form> 
