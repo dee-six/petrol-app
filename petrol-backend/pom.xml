@@ -23,8 +23,8 @@
 		<!-- Backend-API -->
 		<dependency>
 			<groupId>ch.diyamane.app</groupId>
-			<artifactId>petrol-backend-api</artifactId>
-			<version>${project.version}</version>
+			<artifactId>petrol-api-generator</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Spring Boot -->

@@ -1,22 +1,18 @@
 package ch.diyamane.app.petrol.backend.interfaces;
 
+import ch.diyamane.app.petrol.backend.api.PumpShopsApi;
+import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
+import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
-import ch.diyamane.app.petrol.backend.api.PumpShopApi;
-import ch.diyamane.app.petrol.backend.dto.shop.PumpShopDto;
-import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
-import lombok.extern.slf4j.Slf4j;
-
 @Controller
 @Slf4j
-public class PumpshopController implements PumpShopApi {
+public class PumpshopController implements PumpShopsApi {
 
-	@Autowired
-	PumpShopRepository _pumpShopRepository;
+	PumpShopRepository pumpShopRepository;
 
 	@Override
 	public ResponseEntity<PumpShopDto> addPumpshop(PumpShopDto dto) {
@@ -29,6 +25,7 @@ public class PumpshopController implements PumpShopApi {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	@Override
 	public ResponseEntity<PumpShopDto> getPumpshop(Long id) {

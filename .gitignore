@@ -1,9 +1,8 @@
+!petrol-api-generator/target/**/*/*.java
+
 **/*.iml
-
-
 .idea
 .settings
 **/target/**/*
 **/*/*.class
-**/generated/**/*
 **/node_modules/**/*

@@ -12,7 +12,7 @@
 	</parent>
 
 	<artifactId>petrol-microservices-app</artifactId>
-	<name>DM :: petrol-microservices-app</name>
+	<name> DM Petrol :: Petrol Microservice App</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
