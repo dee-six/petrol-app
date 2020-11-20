@@ -2,6 +2,7 @@ package ch.diyamane.app.petrol.backend.application.service;
 
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,65 +20,63 @@ import ch.diyamane.app.petrol.backend.repository.shop.PumpingRepository;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class PetrolStartUpService {
 
-    @Autowired
-    PumpShopRepository _pumpShopRepository;
-
-    @Autowired
-    VehicleOwnerRespository _vehicleOwnerRespository;
-
-    @Autowired
+    PumpShopRepository pumpShopRepository;
+    VehicleOwnerRespository vehicleOwnerRespository;
     VehicleRepository repository;
-
-    @Autowired
     PumpingRepository pumpingRepository;
 
     public void initSchema() {
 
-	PumpShop shop = PumpShop.builder().address1("Funny-Strasse1").address2("")
-		.city("Dietikon").country("Switzerland").name("Tamoil")
-		.description("Tamoil - description").zipCode(8953).build();
+        PumpShop shop = PumpShop.builder().address1("Funny-Strasse1").address2("")
+            .city("Dietikon").country("Switzerland").name("Tamoil")
+            .description("Tamoil - description").zipCode(8953).build();
 
-	_pumpShopRepository.save(shop);
+        pumpShopRepository.save(shop);
 
-	shop = PumpShop.builder().address1("Funny-Strasse1").address2("")
-		.city("Dietikon").country("Switzerland").name("Coop")
-		.description("Coop - description").zipCode(8953).build();
-	_pumpShopRepository.save(shop);
+        shop = PumpShop.builder().address1("Funny-Strasse1").address2("")
+            .city("Dietikon").country("Switzerland").name("Coop")
+            .description("Coop - description").zipCode(8953).build();
+        pumpShopRepository.save(shop);
 
-	Vehicle bmw = Vehicle.builder().model("BMW X Xrive").build();
-	repository.save(bmw);
+        // Vehicle
 
-	Vehicle mini = Vehicle.builder().model("Mini").build();
-	repository.save(mini);
 
-	VehicleOwner deepak = VehicleOwner.builder().name("Deepak")
-		.address1("Funny-Strasse1").address2("Funny-Strasse2")
-		.city("Dietikon").pinCode("8953").country("Switzerland")
-		.build();
-	deepak.setVehicleList(Sets.newHashSet(mini, bmw));
-	_vehicleOwnerRespository.save(deepak);
+        VehicleOwner deepak = VehicleOwner.builder().name("Deepak")
+            .address1("Funny-Strasse1").address2("Funny-Strasse2")
+            .city("Dietikon").pinCode("8953").country("Switzerland")
+            .build();
+        vehicleOwnerRespository.save(deepak);
 
-	VehicleOwner archana = VehicleOwner.builder().name("Archana")
-		.address1("Funny-Strasse1").address2("Funny-Strasse2")
-		.city("Dietikon").pinCode("8953").country("Switzerland")
-		.build();
-	_vehicleOwnerRespository.save(archana);
+        Vehicle bmw = Vehicle.builder().model("BMW X Xrive").build();
+        bmw.setVehicleOwner(deepak);
+        repository.save(bmw);
 
-	VehicleOwner diya = VehicleOwner.builder().name("Diya")
-		.address1("Funny-Strasse1").address2("Funny-Strasse2")
-		.city("Dietikon").pinCode("8953").country("Switzerland")
-		.build();
-	diya.setVehicleList(Sets.newHashSet(mini, bmw));
-	_vehicleOwnerRespository.save(diya);
+        Vehicle mini = Vehicle.builder().model("Mini").build();
+        mini.setVehicleOwner(deepak);
+        repository.save(mini);
 
-	Pumping pump = Pumping.builder().milage(100).billPaid(65.60)
-		.startReading(3456).endReading(3556).distance(3556 - 3456)
-		.milagePer100Unit(7).petrolPricePerLiter(1.31)
-		.petrolPumpedInLitres(50.34).pumpDate(LocalDate.now()).build();
-	pump.setPumpShop(shop);
 
-	pumpingRepository.save(pump);
+        VehicleOwner archana = VehicleOwner.builder().name("Archana")
+            .address1("Funny-Strasse1").address2("Funny-Strasse2")
+            .city("Dietikon").pinCode("8953").country("Switzerland")
+            .build();
+        vehicleOwnerRespository.save(archana);
+
+        VehicleOwner diya = VehicleOwner.builder().name("Diya")
+            .address1("Funny-Strasse1").address2("Funny-Strasse2")
+            .city("Dietikon").pinCode("8953").country("Switzerland")
+            .build();
+        vehicleOwnerRespository.save(diya);
+
+        Pumping pump = Pumping.builder().milage(100).billPaid(65.60)
+            .startReading(3456).endReading(3556).distance(3556 - 3456)
+            .milagePer100Unit(7).petrolPricePerLiter(1.31)
+            .petrolPumpedInLitres(50.34).pumpDate(LocalDate.now()).build();
+        pump.setPumpShop(shop);
+
+        pumpingRepository.save(pump);
     }
 }

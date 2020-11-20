@@ -1,9 +1,13 @@
 package ch.diyamane.app.petrol.backend.domain.model.owner;
 
+import ch.diyamane.app.petrol.backend.dto.StatusEnum;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,6 +31,10 @@ public class VehicleOwner extends BaseEntity<VehicleOwner> {
 	private String city;
 	private String pinCode;
 	private String country;
+
+	@Enumerated(EnumType.STRING)
+	private StatusEnum status;
+
 
 	@Builder.Default
 	@OneToMany(mappedBy = "vehicleOwner")

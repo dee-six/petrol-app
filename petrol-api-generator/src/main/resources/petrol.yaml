@@ -15,7 +15,7 @@ tags:
   - name: Pumpings
   - name: VehicleOwner
 paths:
-  /petrol/pumping/pumpshop/{id}:
+  /petrol/pumping/byPumpshop/{id}:
     get:
       tags:
         - Pumpings
@@ -35,7 +35,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
@@ -50,7 +50,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
@@ -71,7 +71,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/PumpShopDto'
     post:
@@ -90,7 +90,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/PumpShopDto'
   /petrol/pumpshop/{id}:
@@ -113,10 +113,10 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/PumpShopDto'
-  /petrol/vehicleowner/{status}:
+  /petrol/vehicleowner/byStatus/{status}:
     get:
       tags:
         - VehicleOwner
@@ -130,15 +130,12 @@ paths:
           style: simple
           explode: true
           schema:
-            type: string
-            enum:
-              - ACTIVE
-              - INACTIVE
+            $ref: '#/components/schemas/statusEnum'
       responses:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
@@ -153,7 +150,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
@@ -174,7 +171,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/VehicleOwnerDto'
     post:
@@ -193,7 +190,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/VehicleOwnerDto'
   /petrol/vehicleowner/{id}:
@@ -216,7 +213,7 @@ paths:
         "200":
           description: Successful response
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/VehicleOwnerDto'
 components:
@@ -227,28 +224,28 @@ components:
         id:
           type: integer
         name:
-          type: string
-          minimum: 10
           maximum: 50
+          minimum: 10
+          type: string
         address1:
-          type: string
+          maximum: 50
           minimum: 10
-          maximum: 50
+          type: string
         address2:
-          type: string
           maximum: 50
+          type: string
         city:
-          type: string
-          minimum: 2
           maximum: 20
+          minimum: 2
+          type: string
         zipCode:
-          type: string
-          minimum: 4
           maximum: 10
-        country:
+          minimum: 4
           type: string
-          minimum: 2
+        country:
           maximum: 20
+          minimum: 2
+          type: string
     PumpingsDto:
       type: object
       properties:
@@ -289,34 +286,36 @@ components:
         id:
           type: string
         name:
-          type: string
-          minimum: 10
           maximum: 50
+          minimum: 10
+          type: string
         address1:
-          type: string
+          maximum: 50
           minimum: 10
-          maximum: 50
+          type: string
         address2:
-          type: string
           maximum: 50
+          type: string
         city:
-          type: string
-          minimum: 2
           maximum: 20
+          minimum: 2
+          type: string
         pinCode:
-          type: string
-          minimum: 4
           maximum: 10
+          minimum: 4
+          type: string
         country:
-          type: string
-          minimum: 2
           maximum: 20
-        status:
+          minimum: 2
           type: string
-          enum:
-            - ACTIVE
-            - INACTIVE
+        status:
+          $ref: '#/components/schemas/statusEnum'
         ownedVehicles:
           type: array
           items:
             $ref: '#/components/schemas/VehicleDto'
+    statusEnum:
+      type: string
+      enum:
+        - ACTIVE
+        - INACTIVE

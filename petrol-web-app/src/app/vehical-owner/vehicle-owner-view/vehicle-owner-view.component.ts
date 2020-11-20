@@ -7,7 +7,6 @@ import { VehicleOwnerService } from '../../model/vehicle-owner.service';
     templateUrl: './vehicle-owner-view.component.html'
 } )
 
-
 export class VehicleOwnerViewComponent implements OnInit {
 
     title = "Vehical Owner's List";
@@ -15,8 +14,10 @@ export class VehicleOwnerViewComponent implements OnInit {
     colspan=10;
     isActive=false;
 
+    data: any;
     constructor(private vehicleService: VehicleOwnerService) {
         this.vehicleOwners = this.vehicleService.getVehicleOwner();
+        this.data = this.vehicleService.post;
     }
 
     onSave($event) {

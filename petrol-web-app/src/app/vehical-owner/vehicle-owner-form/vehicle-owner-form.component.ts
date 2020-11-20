@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { VehicleOwner } from '../../model/vehicle-owner';
-import { VehicleOwnerService } from '../../model/vehicle-owner.service';
+import {VehicleOwner} from '../../model/vehicle-owner';
+import {VehicleOwnerService} from '../../model/vehicle-owner.service';
 
 @Component({
   selector: 'vehicle-owner-form',
@@ -10,22 +10,21 @@ import { VehicleOwnerService } from '../../model/vehicle-owner.service';
 
 export class VehicleOwnerFormComponent implements OnInit {
 
-	private vehicleService: VehicleOwnerService;
-	
-    constructor(vehicleService: VehicleOwnerService) {
-		this.vehicleService = vehicleService;
+  private vehicleService: VehicleOwnerService;
 
-    }
+  constructor(vehicleService: VehicleOwnerService) {
+    this.vehicleService = vehicleService;
+  }
 
-  	ngOnInit() {
-  	}
+  ngOnInit() {
+  }
 
-	log(value) {
-		console.log(value);
-	}
-	
-	save(form) {
-		let owner: VehicleOwner;
-		this.vehicleService.save(owner);
-	}
+  log(value) {
+    console.log(value);
+  }
+
+  save(form) {
+    let owner: VehicleOwner;
+    this.vehicleService.save(owner);
+  }
 }

@@ -14,7 +14,7 @@ public class VehicleOwnerMapper {
 
     public static VehicleOwnerDto toDto(VehicleOwner vo) {
 
-        VehicleOwnerDto dto = VehicleOwnerDto.builder().name(vo.getName())
+        VehicleOwnerDto dto = VehicleOwnerDto.builder().id(vo.getId().toString()).name(vo.getName())
             .address1(vo.getAddress1()).address2(vo.getAddress2())
             .city(vo.getCity()).pinCode(vo.getPinCode())
             .country(vo.getCountry()).build();

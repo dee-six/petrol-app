@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VehicleOwnerListComponent } from './vehicle-owner-list.component';
-import { VehicleOwnerService } from '../model/vehicle-owner.service';
+import { VehicleOwnerViewComponent } from "./vehicle-owner-view.component";
+import { VehicleOwnerService } from "../../model/vehicle-owner.service";
 
 describe( 'VehicleOwnerListComponent', () => {
-    let component = new VehicleOwnerListComponent(this._injector.get(VehicleOwnerService));
-    let fixture: ComponentFixture<VehicleOwnerListComponent>;
+    let component = new VehicleOwnerViewComponent(this._injector.get(VehicleOwnerService));
+    let fixture: ComponentFixture<VehicleOwnerViewComponent>;
 
     beforeEach( async(() => {
         TestBed.configureTestingModule( {
-            declarations: [VehicleOwnerListComponent]
+            declarations: [VehicleOwnerViewComponent]
         } )
             .compileComponents();
     } ) );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent( VehicleOwnerListComponent );
+        fixture = TestBed.createComponent( VehicleOwnerViewComponent );
         component = fixture.componentInstance;
         fixture.detectChanges();
     } );

@@ -1,5 +1,6 @@
 package ch.diyamane.app.petrol.backend.interfaces;
 
+import ch.diyamane.app.petrol.backend.dto.StatusEnum;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,16 +38,24 @@ public class VehicleOwnerController implements VehicleOwnerApi {
 
     @Override
     public ResponseEntity<List<VehicleOwnerDto>> findAll() {
-        return null;
-    }
-
-
-    @Override
-    public ResponseEntity<List<VehicleOwnerDto>> findAllByStatus(String status) {
 
         List<VehicleOwner> vos = vehicleOwnerRespository.findAll();
 
         List<VehicleOwnerDto> l = vos.stream()
+            .map(VehicleOwnerMapper::toDto)
+            .collect(Collectors.toList());
+
+        return new ResponseEntity<>(l, HttpStatus.OK);
+    }
+
+
+    @Override
+    public ResponseEntity<List<VehicleOwnerDto>> findAllByStatus(StatusEnum status) {
+
+        List<VehicleOwner> vos = vehicleOwnerRespository.findAll();
+
+        List<VehicleOwnerDto> l = vos.stream()
+            .filter(vehicleOwner -> vehicleOwner.getStatus().equals(status))
             .map(VehicleOwnerMapper::toDto)
             .collect(Collectors.toList());
 
