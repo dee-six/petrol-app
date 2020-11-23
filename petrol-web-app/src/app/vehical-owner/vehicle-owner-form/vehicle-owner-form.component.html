@@ -1,60 +1,64 @@
-
 <div class=".panel-title">
-	<h3>Create Vehicle Owner</h3>
+  <h3>Create Vehicle Owner</h3>
 </div>
 
 <form #f="ngForm" (ngSubmit)="save(f)">
 
-	<div ngModelGroup="owner" #owner="ngModelGroup">
+  <div ngModelGroup="owner" #owner="ngModelGroup">
 
-		<div class="form-group">
-			<label for="name1">Full Name</label> <input required ngModel
-				minlength="10" maxlength="25" name="name1" #name2="ngModel"
-				(change)=log(name2) type="text" class="form-control" id="name1"
-				aria-describedby="emailHelp">
+    <div class="form-group">
+      <label for="name1">Full Name</label> <input required ngModel
+                                                  minlength="10" maxlength="25" name="name1"
+                                                  #name2="ngModel"
+                                                  (change)=log(name2) type="text"
+                                                  class="form-control" id="name1"
+                                                  aria-describedby="emailHelp">
 
-			<div class="alert alert-danger" *ngIf="!name2.valid && name2.touched">
-				<div *ngIf="name2.errors.required">Full name is required</div>
-				<div *ngIf="name2.errors.minlength">Minimum length should be
-					{{ name2.errors.minlength.requiredLength}} but is {{
-					name2.errors.minlength.actualLength }}</div>
-			</div>
-			
-			<small id="emailHelp" class="form-text text-muted">First name
-				and seconds name</small>
-		</div>
+      <div class="alert alert-danger" *ngIf="!name2.valid && name2.touched">
+        <div *ngIf="name2.errors.required">Full name is required</div>
+        <div *ngIf="name2.errors.minlength">Minimum length should be
+          {{ name2.errors.minlength.requiredLength}} but is {{
+          name2.errors.minlength.actualLength }}</div>
+      </div>
 
-		<div class="form-group">
-			<label for="address1">Address Line 1</label> <input id="address1"
-				required ngModel name="address1" #address1="ngModel" type="text"
-				class="form-control">
-		</div>
+      <small id="emailHelp" class="form-text text-muted">First name
+        and seconds name</small>
+    </div>
 
-		<div class="form-group">
-			<label for="address2">Address Line 2</label> <input id="address2"
-				type="text" class="form-control">
-		</div>
+    <div class="form-group">
+      <label for="address1">Address Line 1</label> <input id="address1"
+                                                          required ngModel name="address1"
+                                                          #address1="ngModel" type="text"
+                                                          class="form-control">
+    </div>
 
-		<div class="form-group">
-			<label for="city">City</label> <input id="city" required ngsModel
-				name="city" type="text" class="form-control">
-		</div>
+    <div class="form-group">
+      <label for="address2">Address Line 2</label> <input id="address2"
+                                                          required ngModel name="address2"
+                                                          #address2="ngModel" type="text"
+                                                          class="form-control">
+    </div>
 
-		<div class="form-group">
-			<label for="pincode">PinCode</label> <input id="pincode"
-				type="number" class="form-control">
-		</div>
+    <div class="form-group">
+      <label for="city">City</label> <input id="city" required ngModel #city="ngModel"
+                                            name="city" type="text" class="form-control">
+    </div>
 
-		<div class="checkBox">
-			<label for="">
-				<input type="checkBox" ngModel name="isPaid">
-			</label>
-		</div>
-		<p>
-			{{ f.value | json }}
-		</p>
-	</div>
+    <div class="form-group">
+      <label for="pincode">PinCode</label> <input id="pincode" required ngModel #pincode="ngModel"
+                                                  type="number" class="form-control">
+    </div>
+
+    <div class="checkBox">
+      <label for="">
+        <input type="checkBox" ngModel name="isPaid">
+      </label>
+    </div>
+    <p>
+      {{ f.value | json }}
+    </p>
+  </div>
 
 
-	<button type="submit" class="btn btn-primary" [disabled]="!f.valid">Save</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Save</button>
 </form>

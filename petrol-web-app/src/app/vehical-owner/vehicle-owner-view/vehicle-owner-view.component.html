@@ -1,4 +1,7 @@
-<h4>{{ getTitle() }}</h4>
+<h4>
+    {{ getTitle() }}
+    <button type="button" class="btn btn-primary" (click)="onClick($event)" >Refresh</button>
+</h4>
 
 <table class="table">
 	<thead class="thead-dark">
@@ -13,9 +16,7 @@
 	</thead>
 	<tbody>
 
-    <li *ngFor="let p of data"> {{ data.vehicleOwnerDta }} </li>
-
-		<tr *ngFor="let vehicle of vehicleOwners">
+		<tr *ngFor="let vehicle of getVehicleOwners()">
 			<td>{{vehicle.id}}</td>
 			<td>{{vehicle.name}}</td>
 			<td>{{vehicle.address1}}</td>

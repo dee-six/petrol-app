@@ -38,7 +38,7 @@ import { VehicleOwnerCrudComponent } from './vehical-owner/vehicle-owner-crud/ve
   bootstrap: [AppComponent]
 })
 
-export class AppModule { 
-	
+export class AppModule {
+
 }
 

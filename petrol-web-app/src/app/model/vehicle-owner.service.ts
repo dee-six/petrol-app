@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {VehicleOwner} from "./vehicle-owner";
 
 var vehicleOwners = [
   {
@@ -28,29 +29,26 @@ var vehicleOwners = [
 
 export class VehicleOwnerService {
 
-  private vehicleOwners;
+  private vehicleOwners: VehicleOwner[];
   private http;
 
-  post: any[];
 
   constructor(private httpclient: HttpClient) {
     this.http = httpclient;
-    this.vehicleOwners = vehicleOwners;
-  }
-
-  getVehicleOwner() {
-    this.getAllVehicleOwners();
-    return this.vehicleOwners;
   }
 
   getAllVehicleOwners() {
     this.http.get("/petrol/vehicleowner").subscribe(response => {
-      this.post = response.json();
-      console.log(response.json());
-    })
+      this.vehicleOwners = response;
+      console.log(this.vehicleOwners);
+    });
+
+    return this.vehicleOwners
+
   }
+
   save(vehicleOwner) {
-    vehicleOwners.push(vehicleOwner);
-    console.log(this.post);
+    this.vehicleOwners.push(vehicleOwner)
+    console.log(this.vehicleOwners);
   }
 }

@@ -1,15 +1,15 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()">
 
 	<div *ngIf="loginForm.errors" class="alert alert-danger">Login Failed
-		
+
 	</div>
 
 	<div class="form-group">
 		<label for="userName">UserName</label>
 		<input
 			formControlName="userName"
-			id="userName" 
-			type="text" 
+			id="userName"
+			type="text"
 			class="form-control">
 			<div *ngIf="userName.pending" >Validator is in progresss</div>
 			<div *ngIf="userName.touched && userName.invalid"  class="alert alert-danger">
@@ -23,12 +23,12 @@
 
 	<div class="form-group">
 		<label for="password">Password</label>
-		<input 
-			formControlName="passWord"pramodPraPRDpra
+		<input
+			formControlName="passWord"
 			id="password"
-			type="text" 
+			type="text"
 			class="form-control">
 	</div>
 
 	<button type="submit" class="btn btn-primary">Submit</button>
-</form> 
+</form>

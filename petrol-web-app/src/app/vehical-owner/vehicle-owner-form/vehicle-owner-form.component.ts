@@ -24,7 +24,9 @@ export class VehicleOwnerFormComponent implements OnInit {
   }
 
   save(form) {
-    let owner: VehicleOwner;
-    this.vehicleService.save(owner);
+
+    console.log(form);
+
+    this.vehicleService.save(form.value);
   }
 }
