@@ -15,7 +15,7 @@ export class VehicleOwnerViewComponent implements OnInit {
   isActive = false;
 
   constructor(private vehicleService: VehicleOwnerService) {
-    this.vehicleOwners = this.vehicleService.getAllVehicleOwners();
+    
   }
 
   onSave($event) {
@@ -38,7 +38,8 @@ export class VehicleOwnerViewComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("VehicleOwnerViewComponent constructor is called")
+    this.vehicleOwners = this.vehicleService.getAllVehicleOwners();
   }
 
 }

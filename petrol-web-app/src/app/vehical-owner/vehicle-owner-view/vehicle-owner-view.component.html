@@ -1,32 +1,38 @@
-<h4>
-    {{ getTitle() }}
-    <button type="button" class="btn btn-primary" (click)="onClick($event)" >Refresh</button>
-</h4>
+<div style="padding-top: 10mm; padding-bottom: 10mm">
+	<h4>
+	    {{ getTitle() }} &nbsp;  &nbsp; 
 
-<table class="table">
-	<thead class="thead-dark">
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Address</th>
-			<th>PinCode</th>
-			<th>SubscriptionPaid</th>
-			<th>Discount Offered</th>
-		</tr>
-	</thead>
-	<tbody>
+	    <button  id="refresh" type="button" class="btn btn-primary" (click)="onClick($event)">Refresh</button>
+    	&nbsp; 
+		<a class="btn btn-primary btn-lg active" routerLink="/vehicleOwners/new" role="button" aria-pressed="true" routerLinkActive="activebutton">New</a>
+	</h4>
 
-		<tr *ngFor="let vehicle of getVehicleOwners()">
-			<td>{{vehicle.id}}</td>
-			<td>{{vehicle.name}}</td>
-			<td>{{vehicle.address1}}</td>
-			<td>{{vehicle.pinCode}}</td>
-			<td>{{vehicle.subscriptionPaid}}</td>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>PinCode</th>
+				<th>SubscriptionPaid</th>
+				<th>Discount Offered</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let vehicle of getVehicleOwners()">
+				<td>{{vehicle.id}}</td>
+				<td>{{vehicle.name}}</td>
+				<td>{{vehicle.address1}}</td>
+				<td>{{vehicle.pinCode}}</td>
+				<td>{{vehicle.subscriptionPaid}}</td>
 
-			<td *ngIf="vehicle.subscriptionPaid == 'yes'; then discount else noDiscount"></td>
-			<ng-template #discount>10%</ng-template>
-			<ng-template #noDiscount></ng-template>
-		</tr>
-	</tbody>
+				<td *ngIf="vehicle.subscriptionPaid == 'yes'; then discount else noDiscount"></td>
+				<ng-template #discount>10%</ng-template>
+				<ng-template #noDiscount></ng-template>
+			</tr>
+		</tbody>
 
-</table>
+	</table>
+
+</div>
+

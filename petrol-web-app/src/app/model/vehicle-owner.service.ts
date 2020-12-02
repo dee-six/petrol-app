@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {VehicleOwner} from "./vehicle-owner";
+import { map } from 'rxjs/operators';
 
 var vehicleOwners = [
   {
@@ -29,7 +30,7 @@ var vehicleOwners = [
 
 export class VehicleOwnerService {
 
-  private vehicleOwners: VehicleOwner[];
+  private vehicleOwners: VehicleOwner[] = [];
   private http;
 
 
@@ -38,16 +39,28 @@ export class VehicleOwnerService {
   }
 
   getAllVehicleOwners() {
-    this.http.get("/petrol/vehicleowner").subscribe(response => {
-      this.vehicleOwners = response;
-      console.log(this.vehicleOwners);
-    });
+
+    if (this.vehicleOwners.length == 0) {
+
+      this.http.get("/petrol/vehicleowner")
+      .subscribe(
+        (response: VehicleOwner[]) => {
+          this.vehicleOwners = response;
+          console.log("Respose Recieved: ", this.vehicleOwners);
+        },
+        (error: Response) => {
+           if (error.status === 400) {
+             alert("Error");
+           }
+        } 
+      );
+    }
 
     return this.vehicleOwners
-
   }
 
   save(vehicleOwner) {
+    console.log("VehicleOwner to save: ", vehicleOwner);
     this.vehicleOwners.push(vehicleOwner)
     console.log(this.vehicleOwners);
   }
