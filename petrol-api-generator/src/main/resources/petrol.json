@@ -1,434 +1,491 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Diya Mane Petrol Single Page Portal",
-    "contact": {
-      "name": "Deepak",
-      "email": "deepak.rampoore@gmail.com"
-    },
-    "version": "1.0-oas3"
-  },
-  "servers": [
-    {
-      "url": "https://virtserver.swaggerhub.com/petrol-app/diya-mane_petrol_single_page_portal/1.0-oas3",
-      "description": "SwaggerHub API Auto Mocking"
-    },
-    {
-      "url": "http://www.localhost.com:1010/api"
-    }
-  ],
-  "tags": [
-    {
-      "name": "PumpShops"
-    },
-    {
-      "name": "Pumpings"
-    },
-    {
-      "name": "VehicleOwner"
-    }
-  ],
-  "paths": {
-    "/petrol/pumping/pumpshop/{id}": {
-      "get": {
-        "tags": [
-          "Pumpings"
-        ],
-        "description": "Get pumping from this given pumpshop",
-        "operationId": "getPumping",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Business ID",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PumpingsDto"
-                }
-              }
-            }
-          }
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Diya Mane Petrol Single Page Portal",
+        "version": "1.0-oas3",
+        "contact": {
+            "name": "Deepak",
+            "email": "deepak.rampoore@gmail.com"
         }
-      }
     },
-    "/petrol/pumpshop": {
-      "get": {
-        "tags": [
-          "PumpShops"
-        ],
-        "description": "Get a list of Pumpshot",
-        "operationId": "getPumpshops",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PumpShopDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "PumpShops"
-        ],
-        "description": "Update a Pumpshop",
-        "operationId": "updatePumpshop",
-        "requestBody": {
-          "description": "Pumpshop to be updated",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PumpShopDto"
-              }
-            }
-          },
-          "required": true
+    "servers": [
+        {
+            "url": "https://virtserver.swaggerhub.com/petrol-app/diya-mane_petrol_single_page_portal/1.0-oas3",
+            "description": "SwaggerHub API Auto Mocking"
         },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PumpShopDto"
-                }
-              }
-            }
-          }
+        {
+            "url": "http://www.localhost.com:1010/api"
         }
-      },
-      "post": {
-        "tags": [
-          "PumpShops"
-        ],
-        "description": "Add a Pumpshop",
-        "operationId": "addPumpshop",
-        "requestBody": {
-          "description": "Pumpshop to be created",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PumpShopDto"
-              }
+    ],
+    "paths": {
+        "/petrol/pumping/byPumpshop/{id}": {
+            "get": {
+                "tags": [
+                    "Pumpings"
+                ],
+                "parameters": [
+                    {
+                        "style": "simple",
+                        "explode": false,
+                        "name": "id",
+                        "description": "Business ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PumpingsDto"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "getPumping",
+                "description": "Get pumping from this given pumpshop"
             }
-          },
-          "required": true
         },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PumpShopDto"
-                }
-              }
+        "/petrol/pumpshop": {
+            "get": {
+                "tags": [
+                    "PumpShops"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PumpShopDto"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "getPumpshops",
+                "description": "Get a list of Pumpshops"
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Pumpshop to be updated",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PumpShopDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "PumpShops"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PumpShopDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "updatePumpshop",
+                "description": "Update a Pumpshop"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "Pumpshop to be created",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PumpShopDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "PumpShops"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PumpShopDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "addPumpshop",
+                "description": "Add a Pumpshop"
             }
-          }
-        }
-      }
-    },
-    "/petrol/pumpshop/{id}": {
-      "get": {
-        "tags": [
-          "PumpShops"
-        ],
-        "description": "Get  Pumpshop Details",
-        "operationId": "getPumpshop",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Business ID",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PumpShopDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/petrol/vehicleowner": {
-      "get": {
-        "tags": [
-          "VehicleOwner"
-        ],
-        "description": "Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array ",
-        "operationId": "findAllByStatus",
-        "parameters": [
-          {
-            "in": "query",
-            "description": "Status of the VehicleOwner",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ACTIVE",
-                "INACTIVE"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleOwnerDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "VehicleOwner"
-        ],
-        "description": "Update  a new Vehicle Owner",
-        "operationId": "updateOwner",
-        "requestBody": {
-          "description": "Vehicle to be updated",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VehicleOwnerDto"
-              }
-            }
-          },
-          "required": true
         },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleOwnerDto"
-                }
-              }
+        "/petrol/pumpshop/{id}": {
+            "get": {
+                "tags": [
+                    "PumpShops"
+                ],
+                "parameters": [
+                    {
+                        "style": "simple",
+                        "explode": false,
+                        "name": "id",
+                        "description": "Business ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PumpShopDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "getPumpshop",
+                "description": "Get  Pumpshop Details"
             }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "VehicleOwner"
-        ],
-        "description": "Create a new Vehicle Owner",
-        "operationId": "addVehicleOwner",
-        "requestBody": {
-          "description": "Vehicle to be created",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VehicleOwnerDto"
-              }
-            }
-          },
-          "required": true
         },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleOwnerDto"
-                }
-              }
+        "/petrol/vehicleowner/byStatus/{status}": {
+            "get": {
+                "tags": [
+                    "VehicleOwner"
+                ],
+                "parameters": [
+                    {
+                        "style": "simple",
+                        "explode": true,
+                        "name": "status",
+                        "description": "Status of the VehicleOwner",
+                        "schema": {
+                            "$ref": "#/components/schemas/statusEnum"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/VehicleOwnerDto"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "findAllByStatus",
+                "description": "Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array "
             }
-          }
+        },
+        "/petrol/vehicleowner": {
+            "get": {
+                "tags": [
+                    "VehicleOwner"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/VehicleOwnerDto"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "findAll",
+                "description": "Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array "
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Vehicle to be updated",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VehicleOwnerDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "VehicleOwner"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VehicleOwnerDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "updateOwner",
+                "description": "Update  a new Vehicle Owner"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "Vehicle to be created",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VehicleOwnerDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "VehicleOwner"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VehicleOwnerDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "addVehicleOwner",
+                "description": "Create a new Vehicle Owner"
+            }
+        },
+        "/petrol/vehicleowner/{id}": {
+            "get": {
+                "tags": [
+                    "VehicleOwner"
+                ],
+                "parameters": [
+                    {
+                        "style": "simple",
+                        "explode": false,
+                        "name": "id",
+                        "description": "VehicleOwner PK",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VehicleOwnerDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "getOwner",
+                "description": "Get Vehicle Owner by business id"
+            }
         }
-      }
     },
-    "/petrol/vehicleowner/{id}": {
-      "get": {
-        "tags": [
-          "VehicleOwner"
-        ],
-        "description": "Get  a new Vehicle Owner",
-        "operationId": "getOwner",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "VehicleOwner PK",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleOwnerDto"
+    "components": {
+        "schemas": {
+            "PumpShopDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "maximum": 50,
+                        "minimum": 10,
+                        "type": "string"
+                    },
+                    "address1": {
+                        "maximum": 50,
+                        "minimum": 10,
+                        "type": "string"
+                    },
+                    "address2": {
+                        "maximum": 50,
+                        "type": "string"
+                    },
+                    "city": {
+                        "maximum": 20,
+                        "minimum": 2,
+                        "type": "string"
+                    },
+                    "zipCode": {
+                        "maximum": 10,
+                        "minimum": 4,
+                        "type": "string"
+                    },
+                    "country": {
+                        "maximum": 20,
+                        "minimum": 2,
+                        "type": "string"
+                    }
                 }
-              }
+            },
+            "PumpingsDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "startReading": {
+                        "type": "number"
+                    },
+                    "endReading": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "pumpDate": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "petrolPumpedInLitres": {
+                        "type": "number"
+                    },
+                    "billPaid": {
+                        "type": "number"
+                    },
+                    "distance": {
+                        "type": "number"
+                    },
+                    "milage": {
+                        "type": "number"
+                    },
+                    "milagePer100Unit": {
+                        "type": "number"
+                    },
+                    "petrolPricePerLiter": {
+                        "type": "number"
+                    },
+                    "pumpShop": {
+                        "$ref": "#/components/schemas/PumpShopDto"
+                    }
+                }
+            },
+            "VehicleDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "model": {
+                        "type": "string"
+                    }
+                }
+            },
+            "VehicleOwnerDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "maximum": 50,
+                        "minimum": 10,
+                        "type": "string"
+                    },
+                    "address1": {
+                        "maximum": 50,
+                        "minimum": 10,
+                        "type": "string"
+                    },
+                    "address2": {
+                        "maximum": 50,
+                        "type": "string"
+                    },
+                    "city": {
+                        "maximum": 20,
+                        "minimum": 2,
+                        "type": "string"
+                    },
+                    "pinCode": {
+                        "maximum": 10,
+                        "minimum": 4,
+                        "type": "string"
+                    },
+                    "country": {
+                        "maximum": 20,
+                        "minimum": 2,
+                        "type": "string"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/statusEnum"
+                    },
+                    "ownedVehicles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/VehicleDto"
+                        }
+                    }
+                }
+            },
+            "statusEnum": {
+                "enum": [
+                    "ACTIVE",
+                    "INACTIVE"
+                ],
+                "type": "string"
             }
-          }
         }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "PumpShopDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "zipCode": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          }
+    },
+    "tags": [
+        {
+            "name": "PumpShops"
+        },
+        {
+            "name": "Pumpings"
+        },
+        {
+            "name": "VehicleOwner"
         }
-      },
-      "PumpingsDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "startReading": {
-            "type": "double"
-          },
-          "endReading": {
-            "type": "double"
-          },
-          "pumpDate": {
-            "type": "date"
-          },
-          "petrolPumpedInLitres": {
-            "type": "double"
-          },
-          "billPaid": {
-            "type": "double"
-          },
-          "distance": {
-            "type": "double"
-          },
-          "milage": {
-            "type": "double"
-          },
-          "milagePer100Unit": {
-            "type": "double"
-          },
-          "petrolPricePerLiter": {
-            "type": "double"
-          },
-          "pumpShop": {
-            "type": "PumpShopDto"
-          }
-        }
-      },
-      "VehicleDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "model": {
-            "type": "string"
-          }
-        }
-      },
-      "VehicleOwnerDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "pinCode": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ACTIVE",
-              "INACTIVE"
-            ]
-          },
-          "ownedVehicles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/VehicleDto"
-            }
-          }
-        }
-      }
-    }
-  }
+    ]
 }

@@ -66,6 +66,7 @@
         <version>${openapi.generator.version}</version>
         <executions>
           <execution>
+            <id>generate-java</id>
             <goals>
               <goal>generate</goal>
             </goals>
@@ -92,9 +93,28 @@
               <templateResourcePath>${project.basedir}/src/main/resources/template</templateResourcePath>
             </configuration>
           </execution>
+          <!--
+          <execution>
+            <id>generate-ts</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.basedir}/src/main/resources/petrol.json</inputSpec>
+              <generatorName>typescript-angular</generatorName>
+              <output>${project.basedir}../petrol-web-app/src/app/gen</output>
+              <validateSpec>false</validateSpec>
+              <configOptions>
+                <npmName>petrol-web-app</npmName>
+                <providedInRoot>true</providedInRoot>
+                <apiModulePrefix>api</apiModulePrefix>
+                <stringEnums>true</stringEnums>
+              </configOptions>
+            </configuration>
+          </execution>
+          -->
         </executions>
       </plugin>
-
     </plugins>
 
     <pluginManagement>
