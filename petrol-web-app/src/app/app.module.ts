@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
 
+import { ApiModule } from './gen/api.module';
 import { PanelComponent } from './common/panel.component';
 import { SidebarComponent } from './common/sidebar.component';
 import { VehicleOwnerViewComponent } from './vehical-owner/vehicle-owner-view/vehicle-owner-view.component';
@@ -13,31 +13,36 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { VehicleOwnerCrudComponent } from './vehical-owner/vehicle-owner-crud/vehicle-owner-crud.component';
 
+import { BASE_PATH } from './gen/variables';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-	  PanelComponent,
-	  SidebarComponent,
-	  VehicleOwnerViewComponent,
-    VehicleOwnerFormComponent,
-    LoginFormComponent,
-    VehicleOwnerCrudComponent
-  ],
+	declarations: [
+		AppComponent,
+		PanelComponent,
+		SidebarComponent,
+		VehicleOwnerViewComponent,
+		VehicleOwnerFormComponent,
+		LoginFormComponent,
+		VehicleOwnerCrudComponent
+	],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule  
-  ],
+	imports: [
+		ApiModule,
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		HttpClientModule
+	],
 
-  providers: [
-    HttpClientModule
-  ],
+	providers: [
+		HttpClientModule,
+		{provide: BASE_PATH, useValue: 'http://localhost:8080'} 
 
-  bootstrap: [AppComponent]
+	],
+
+	bootstrap: [AppComponent],
 })
 
 export class AppModule {
