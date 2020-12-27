@@ -1,65 +1,57 @@
----
 openapi: 3.0.0
 info:
   title: Diya Mane Petrol Single Page Portal
+  version: 1.0-oas3
   contact:
     name: Deepak
     email: deepak.rampoore@gmail.com
-  version: 1.0-oas3
+  x-logo:
+    url: ''
 servers:
-  - url: https://virtserver.swaggerhub.com/petrol-app/diya-mane_petrol_single_page_portal/1.0-oas3
-    description: SwaggerHub API Auto Mocking
-  - url: http://www.localhost.com:1010/api
-tags:
-  - name: PumpShops
-  - name: Pumpings
-  - name: VehicleOwner
+  - url: 'http://localhost:8080/api'
+    description: ''
 paths:
-  /petrol/pumping/byPumpshop/{id}:
+  '/petrol/pumping/byPumpshop/{id}':
     get:
       tags:
         - Pumpings
-      description: Get pumping from this given pumpshop
-      operationId: getPumping
       parameters:
-        - name: id
-          in: path
-          description: Business ID
-          required: true
-          style: simple
+        - style: simple
           explode: false
+          name: id
+          description: Business ID
           schema:
-            type: integer
             format: int64
+            type: integer
+          in: path
+          required: true
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/PumpingsDto'
+          description: Successful response
+      operationId: getPumping
+      description: Get pumping from this given pumpshop
   /petrol/pumpshop:
     get:
       tags:
         - PumpShops
-      description: Get a list of Pumpshops
-      operationId: getPumpshops
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/PumpShopDto'
+          description: Successful response
+      operationId: getPumpshops
+      description: Get a list of Pumpshops
     put:
-      tags:
-        - PumpShops
-      description: Update a Pumpshop
-      operationId: updatePumpshop
       requestBody:
         description: Pumpshop to be updated
         content:
@@ -67,18 +59,18 @@ paths:
             schema:
               $ref: '#/components/schemas/PumpShopDto'
         required: true
+      tags:
+        - PumpShops
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PumpShopDto'
+          description: Successful response
+      operationId: updatePumpshop
+      description: Update a Pumpshop
     post:
-      tags:
-        - PumpShops
-      description: Add a Pumpshop
-      operationId: addPumpshop
       requestBody:
         description: Pumpshop to be created
         content:
@@ -86,80 +78,84 @@ paths:
             schema:
               $ref: '#/components/schemas/PumpShopDto'
         required: true
+      tags:
+        - PumpShops
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PumpShopDto'
-  /petrol/pumpshop/{id}:
+          description: Successful response
+      operationId: addPumpshop
+      description: Add a Pumpshop
+  '/petrol/pumpshop/{id}':
     get:
       tags:
         - PumpShops
-      description: Get  Pumpshop Details
-      operationId: getPumpshop
       parameters:
-        - name: id
-          in: path
-          description: Business ID
-          required: true
-          style: simple
+        - style: simple
           explode: false
+          name: id
+          description: Business ID
           schema:
-            type: integer
             format: int64
+            type: integer
+          in: path
+          required: true
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PumpShopDto'
-  /petrol/vehicleowner/byStatus/{status}:
+          description: Successful response
+      operationId: getPumpshop
+      description: Get  Pumpshop Details
+  '/petrol/vehicleowner/byStatus/{status}':
     get:
       tags:
         - VehicleOwner
-      description: 'Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array '
-      operationId: findAllByStatus
       parameters:
-        - name: status
-          in: path
-          description: Status of the VehicleOwner
-          required: true
-          style: simple
+        - style: simple
           explode: true
+          name: status
+          description: Status of the VehicleOwner
           schema:
-            $ref: '#/components/schemas/statusEnum'
+            $ref: '#/components/schemas/StatusEnum'
+          in: path
+          required: true
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/VehicleOwnerDto'
+          description: Successful response
+      operationId: findAllByStatus
+      description: >-
+        Gets `VehicleOwnerDto` objects. Optional query param of **size**
+        determines size of returned array 
   /petrol/vehicleowner:
     get:
       tags:
         - VehicleOwner
-      description: 'Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array '
-      operationId: findAll
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/VehicleOwnerDto'
+          description: Successful response
+      operationId: findAll
+      description: >-
+        Gets `VehicleOwnerDto` objects. Optional query param of **size**
+        determines size of returned array 
     put:
-      tags:
-        - VehicleOwner
-      description: Update  a new Vehicle Owner
-      operationId: updateOwner
       requestBody:
         description: Vehicle to be updated
         content:
@@ -167,18 +163,18 @@ paths:
             schema:
               $ref: '#/components/schemas/VehicleOwnerDto'
         required: true
+      tags:
+        - VehicleOwner
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VehicleOwnerDto'
+          description: Successful response
+      operationId: updateOwner
+      description: Update  a new Vehicle Owner
     post:
-      tags:
-        - VehicleOwner
-      description: Create a new Vehicle Owner
-      operationId: addVehicleOwner
       requestBody:
         description: Vehicle to be created
         content:
@@ -186,36 +182,40 @@ paths:
             schema:
               $ref: '#/components/schemas/VehicleOwnerDto'
         required: true
+      tags:
+        - VehicleOwner
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VehicleOwnerDto'
-  /petrol/vehicleowner/{id}:
+          description: Successful response
+      operationId: addVehicleOwner
+      description: Create a new Vehicle Owner
+  '/petrol/vehicleowner/{id}':
     get:
       tags:
         - VehicleOwner
-      description: Get Vehicle Owner by business id
-      operationId: getOwner
       parameters:
-        - name: id
-          in: path
-          description: VehicleOwner PK
-          required: true
-          style: simple
+        - style: simple
           explode: false
+          name: id
+          description: VehicleOwner PK
           schema:
-            type: integer
             format: int64
+            type: integer
+          in: path
+          required: true
       responses:
-        "200":
-          description: Successful response
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VehicleOwnerDto'
+          description: Successful response
+      operationId: getOwner
+      description: Get Vehicle Owner by business id
 components:
   schemas:
     PumpShopDto:
@@ -254,11 +254,11 @@ components:
         startReading:
           type: number
         endReading:
-          type: number
           format: double
+          type: number
         pumpDate:
-          type: string
           format: date
+          type: string
         petrolPumpedInLitres:
           type: number
         billPaid:
@@ -280,6 +280,22 @@ components:
           type: string
         model:
           type: string
+    SubscribedEnum:
+      format: ''
+      pattern: ''
+      enum:
+        - 'YES'
+        - 'No'
+      type: string
+      example: ''
+      x-last-modified: 1609023083734
+    StatusEnum:
+      enum:
+        - ACTIVE
+        - INACTIVE
+      type: string
+      example: ''
+      x-last-modified: 1609023100145
     VehicleOwnerDto:
       type: object
       properties:
@@ -308,14 +324,21 @@ components:
           maximum: 20
           minimum: 2
           type: string
+        subscribed:
+          $ref: '#/components/schemas/SubscribedEnum'
         status:
-          $ref: '#/components/schemas/statusEnum'
+          $ref: '#/components/schemas/StatusEnum'
         ownedVehicles:
           type: array
           items:
             $ref: '#/components/schemas/VehicleDto'
-    statusEnum:
-      type: string
-      enum:
-        - ACTIVE
-        - INACTIVE
+      example: ''
+      x-last-modified: 1609023137278
+  securitySchemes: {}
+  responses: {}
+  parameters: {}
+tags:
+  - name: PumpShops
+  - name: Pumpings
+  - name: VehicleOwner
+security: []

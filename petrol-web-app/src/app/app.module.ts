@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ApiModule } from './gen/api.module';
+import {BASE_PATH } from './gen/variables';
 import { PanelComponent } from './common/panel.component';
 import { SidebarComponent } from './common/sidebar.component';
 import { VehicleOwnerViewComponent } from './vehical-owner/vehicle-owner-view/vehicle-owner-view.component';
@@ -12,9 +13,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { VehicleOwnerCrudComponent } from './vehical-owner/vehicle-owner-crud/vehicle-owner-crud.component';
-
-import { BASE_PATH } from './gen/variables';
-
 
 @NgModule({
 	declarations: [
@@ -38,8 +36,7 @@ import { BASE_PATH } from './gen/variables';
 
 	providers: [
 		HttpClientModule,
-		{provide: BASE_PATH, useValue: 'http://localhost:8080'} 
-
+		{provide: BASE_PATH, useValue: 'api'} 
 	],
 
 	bootstrap: [AppComponent],

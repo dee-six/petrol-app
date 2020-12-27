@@ -39,10 +39,10 @@ export class VehicleOwnerService {
   }
 
   getAllVehicleOwners() {
-
+	
     if (this.vehicleOwners.length == 0) {
 
-      this.http.get("/petrol/vehicleowner")
+      this.http.get("api/petrol/vehicleowner")
       .subscribe(
         (response: VehicleOwner[]) => {
           this.vehicleOwners = response;

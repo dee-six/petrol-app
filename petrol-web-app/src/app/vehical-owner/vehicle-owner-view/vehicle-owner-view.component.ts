@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { VehicleOwnerDto } from '../../gen/model/vehicleOwnerDto';
 import { VehicleOwnerService } from '../../gen/api/vehicleOwner.service';
+// import { VehicleOwnerService } from '../../model/vehicle-owner.service';
 import { Observable } from 'rxjs';
 
 
@@ -26,13 +27,13 @@ export class VehicleOwnerViewComponent implements OnInit {
 	}
 
 	getVehicleOwners() {
-
+		
 		if (this.vehicleOwners.length == 0) {
 			this.vehicleService.findAll().subscribe((vehicleOwners: VehicleOwnerDto[]) => {
 				this.vehicleOwners = vehicleOwners;
 			})
-			return this.vehicleOwners;
 		}
+		return this.vehicleOwners;
 	}
 
 	getTitle() {
@@ -45,8 +46,6 @@ export class VehicleOwnerViewComponent implements OnInit {
 
 	ngOnInit() {
 		console.log("VehicleOwnerViewComponent constructor is called");
-		console.log(this.vehicleService.configuration);
-
 		this.vehicleService.findAll().subscribe((vehicleOwners: VehicleOwnerDto[]) => {
 			this.vehicleOwners = vehicleOwners;
 		})
