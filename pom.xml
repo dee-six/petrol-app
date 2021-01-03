@@ -37,7 +37,7 @@
 		<module>petrol-api-generator</module>
 		<module>petrol-backend-api</module>
 		<module>petrol-backend</module>
-		<module>petrol-microservices-app</module>
+		<module>petrol-app</module>
 	</modules>
 
 	<dependencyManagement>
