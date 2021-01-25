@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: petrol-app-pod
+  labels:
+    app: petrol-app-backend
+spec:
+    containers:
+    - name: petrol-app-backend
+      image: deepak1947/petrol-app
+      ports:
+      - containerPort: 8080
