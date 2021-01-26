@@ -11,6 +11,7 @@
 *   Implement spring-boot microservice using the generate API and DTOs.
 
 # Code Analysis
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/20beb1d7a9af4d7fb0164600a83f9a61)](https://app.codacy.com/gh/dee-six/petrol-app?utm_source=github.com&utm_medium=referral&utm_content=dee-six/petrol-app&utm_campaign=Badge_Grade_Settings)
 [![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImRlZS1zaXgiLCJyZXBvMSI6InBldHJvbC1hcHAiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNjkyOSwiaWF0IjoxNjExNjkzMTM4fQ.Mtardxcygy6IL0ed7jcSditMHPTHZQHx5QAB16YUa-I)](https://www.deepcode.ai/app/gh/dee-six/petrol-app/_/dashboard?utm_content=gh%2Fdee-six%2Fpetrol-app)
 
 #### References
