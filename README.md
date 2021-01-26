@@ -13,6 +13,8 @@
 # Code Analysis
 [![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImRlZS1zaXgiLCJyZXBvMSI6InBldHJvbC1hcHAiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNjkyOSwiaWF0IjoxNjExNjkzMTM4fQ.Mtardxcygy6IL0ed7jcSditMHPTHZQHx5QAB16YUa-I)](https://www.deepcode.ai/app/gh/dee-six/petrol-app/_/dashboard?utm_content=gh%2Fdee-six%2Fpetrol-app)
 
+# Code Analysis coming soon from Codacy
+
 #### References
 *   Use Open API GUI <https://mermade.github.io/openapi-gui/> to define your API
 *   Use Open API maven command to generate Java and Typescript code [Open API Generator Plugins](https://openapi-generator.tech/docs/plugins "Open API Generator Plugins") 
