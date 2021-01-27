@@ -2,12 +2,8 @@ package ch.diyamane.app.petrol.backend.application.service;
 
 import java.time.LocalDate;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.google.common.collect.Sets;
 
 import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
@@ -17,6 +13,7 @@ import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRespository;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleRepository;
 import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
 import ch.diyamane.app.petrol.backend.repository.shop.PumpingRepository;
+import lombok.AllArgsConstructor;
 
 @Service
 @Transactional

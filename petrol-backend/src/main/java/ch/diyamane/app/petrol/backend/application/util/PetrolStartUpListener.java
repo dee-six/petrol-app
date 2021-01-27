@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PetrolStartUpListener {
 
 	@Autowired
-	PetrolStartUpService _pStartUpService;
+	private PetrolStartUpService _pStartUpService;
 
 	@EventListener
 	public void contextInitialized(ContextRefreshedEvent event) {
