@@ -13,7 +13,7 @@
 
   <properties>
     <default.package>ch.diyamane.app.petrol.backend</default.package>
-    <openapi.generator.version>4.3.1</openapi.generator.version>
+    <openapi.generator.version>5.1.0</openapi.generator.version>
     <openapitools.version>0.2.1</openapitools.version>
     <jetty-version>9.2.9.v20150224</jetty-version>
     <servlet-api-version>2.5</servlet-api-version>
@@ -84,6 +84,7 @@
                 <interfaceOnly>true</interfaceOnly>
                 <openApiNullable>false</openApiNullable>
                 <useBeanValidation>false</useBeanValidation>
+                <title>PetrolAppAPI</title>
               </configOptions>
 
               <apiPackage>${default.package}.api</apiPackage>
