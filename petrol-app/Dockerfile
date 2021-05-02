@@ -1,7 +1,7 @@
 FROM azul/zulu-openjdk-alpine:14
 
 ARG APP_DIR=/usr/app/petrol-app
-ARG JAR_FILE=/petrol-app/target/petrol-app-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=/target/petrol-app-0.0.1-SNAPSHOT.jar
 
 WORKDIR ${APP_DIR}
 
