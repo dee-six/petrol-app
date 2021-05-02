@@ -1,8 +1,13 @@
+sudo: required
 language: java
+jdk: oraclejdk8
 
 services:
   - docker
-  
-before_install: 
+
+script:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - docker build -t deepak1947/petrol-app -f petrol-app/Dockerfile .
+  - bash petrol-cicd/change-directory-petrol-app.sh
+  
+after_sucess:
+    docker build -t deepak1947/petrol-app -f Dockerfile .
