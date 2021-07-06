@@ -6,6 +6,7 @@ services:
 
 script:
   - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
+  - bash petrol-cicd/change-directory-petrol-app.sh
   
 after_sucess:
-    docker build -t deepak1947/petrol-app -f ./petrol-app/Dockerfile .
+    docker build -t deepak1947/petrol-app -f ./Dockerfile .
