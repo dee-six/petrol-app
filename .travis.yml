@@ -10,5 +10,5 @@ script:
   - pwd
   
 after_sucess:
-    docker build -t deepak1947/petrol-app -f ./Dockerfile .
-    docker push deepak1947/petrol-app
+  -  docker build -t deepak1947/petrol-app -f ./Dockerfile .
+  -  docker push deepak1947/petrol-app
