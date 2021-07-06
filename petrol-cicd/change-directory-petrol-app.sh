@@ -2,3 +2,4 @@
 
 pushd .
 cd petrol-app
+pwd
