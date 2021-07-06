@@ -1,18 +1,8 @@
 package ch.diyamane.app.petrol.backend.application.service;
 
-import java.time.LocalDate;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
-import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
-import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
-import ch.diyamane.app.petrol.backend.domain.model.shop.Pumping;
-import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRespository;
-import ch.diyamane.app.petrol.backend.repository.owner.VehicleRepository;
-import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
-import ch.diyamane.app.petrol.backend.repository.shop.PumpingRepository;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -20,6 +10,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PetrolStartUpService {
 
+	/*
     PumpShopRepository pumpShopRepository;
     VehicleOwnerRespository vehicleOwnerRespository;
     VehicleRepository repository;
@@ -29,13 +20,13 @@ public class PetrolStartUpService {
 
         PumpShop shop = PumpShop.builder().address1("Funny-Strasse1").address2("")
             .city("Dietikon").country("Switzerland").name("Tamoil")
-            .description("Tamoil - description").zipCode(8953).build();
+            .description("Tamoil - description").zipCode("8953").build();
 
         pumpShopRepository.save(shop);
 
         shop = PumpShop.builder().address1("Funny-Strasse1").address2("")
             .city("Dietikon").country("Switzerland").name("Coop")
-            .description("Coop - description").zipCode(8953).build();
+            .description("Coop - description").zipCode("8953").build();
         pumpShopRepository.save(shop);
 
         // Vehicle
@@ -76,4 +67,5 @@ public class PetrolStartUpService {
 
         pumpingRepository.save(pump);
     }
+    */
 }

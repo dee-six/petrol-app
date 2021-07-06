@@ -1,4 +1,4 @@
-package ch.diyamane.app.petrol.backend.interfaces;
+package ch.diyamane.app.petrol.backend.mapper;
 
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
 import ch.diyamane.app.petrol.backend.dto.VehicleDto;

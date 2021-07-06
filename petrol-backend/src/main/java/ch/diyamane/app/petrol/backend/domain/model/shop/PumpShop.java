@@ -1,26 +1,29 @@
 package ch.diyamane.app.petrol.backend.domain.model.shop;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.google.common.collect.Sets;
+
 import ch.diyamane.app.petrol.backend.domain.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "PUMP_SHOP")
-@Builder
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
-@NoArgsConstructor
+@SuperBuilder
 public class PumpShop extends BaseEntity<PumpShop> {
 
 	@Column(name = "NAME", nullable = false)
@@ -36,7 +39,7 @@ public class PumpShop extends BaseEntity<PumpShop> {
 	private String address2;
 
 	@Column(name = "ZIP_CODE")
-	private double zipCode;
+	private String zipCode;
 
 	@Column(name = "CITY")
 	private String city;
@@ -44,10 +47,11 @@ public class PumpShop extends BaseEntity<PumpShop> {
 	@Column(name = "COUNTRY")
 	private String country;
 
-	@OneToMany(mappedBy = "pumpShop")
+	@OneToMany(mappedBy = "pumpShop", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Builder.Default
-	private Set<Pumping> pumpings = new LinkedHashSet<Pumping>();
-
+	private Set<Pumping> pumpings = Sets.newConcurrentHashSet();
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -64,18 +68,6 @@ public class PumpShop extends BaseEntity<PumpShop> {
 		return pumpings;
 	}
 
-	public PumpShop(String name, String description, String address1, String address2, double zipCode, String city,
-			String country) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.address1 = address1;
-		this.address2 = address2;
-		this.zipCode = zipCode;
-		this.city = city;
-		this.country = country;
-	}
-
 	public void addPumping(Pumping pumping) {
 		getPumpings().add(pumping);
 	}
@@ -85,4 +77,6 @@ public class PumpShop extends BaseEntity<PumpShop> {
 		return "PumpShop [id=" + getId() + ", name=" + name + ", description=" + description + ", address1=" + address1
 				+ ", address2=" + address2 + ", zipCode=" + zipCode + ", city=" + city + ", country=" + country + "]";
 	}
+	
+	
 }

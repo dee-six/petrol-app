@@ -28,7 +28,7 @@ public class PetrolStartUpListener {
 	@EventListener
 	public void contextInitialized(ContextRefreshedEvent event) {
 
-		_pStartUpService.initSchema();
+		//_pStartUpService.initSchema();
 
 		log.info("Petrol Schema initialized");
 

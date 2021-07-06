@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import ch.diyamane.app.petrol.backend.api.VehicleOwnerApi;
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
 import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
+import ch.diyamane.app.petrol.backend.mapper.VehicleOwnerMapper;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRespository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

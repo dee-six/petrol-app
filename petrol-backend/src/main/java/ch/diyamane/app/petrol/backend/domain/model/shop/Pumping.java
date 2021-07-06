@@ -12,18 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import ch.diyamane.app.petrol.backend.domain.base.BaseEntity;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "PUMPING")
-@Builder
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@SuperBuilder
 public class Pumping extends BaseEntity<Pumping> {
 
 	@Column(name = "START_READING", nullable = false)
@@ -53,9 +51,10 @@ public class Pumping extends BaseEntity<Pumping> {
 	@Column(name = "PETROL_PRICE_PER_LITER", nullable = false)
 	private double petrolPricePerLiter;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "PUMP_SHOP_ID", foreignKey = @ForeignKey(name = "FK_PUMPING_PUMP_SHOP_1"))
 	private PumpShop pumpShop;
+
 
 	/**
 	 * This is Previous Pumping
@@ -80,5 +79,7 @@ public class Pumping extends BaseEntity<Pumping> {
 				+ ", distance=" + distance + ", milage=" + milage + ", milagePer100Unit=" + milagePer100Unit
 				+ ", petrolPrice=" + petrolPricePerLiter + ", pumpShop=" + pumpShop + "]";
 	}
+
+	
 
 }

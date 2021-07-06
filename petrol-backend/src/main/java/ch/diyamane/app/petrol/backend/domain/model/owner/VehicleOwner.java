@@ -1,27 +1,29 @@
 package ch.diyamane.app.petrol.backend.domain.model.owner;
 
-import ch.diyamane.app.petrol.backend.dto.StatusEnum;
-import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.common.collect.Sets;
+
 import ch.diyamane.app.petrol.backend.domain.base.BaseEntity;
-import lombok.AllArgsConstructor;
+import ch.diyamane.app.petrol.backend.dto.StatusEnum;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "VEHICLE_OWNER")
-@Builder
 @Data
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
 public class VehicleOwner extends BaseEntity<VehicleOwner> {
 
@@ -35,10 +37,9 @@ public class VehicleOwner extends BaseEntity<VehicleOwner> {
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 
-
+	@OneToMany(mappedBy = "vehicleOwner", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
 	@Builder.Default
-	@OneToMany(mappedBy = "vehicleOwner")
-	private Set<Vehicle> vehicleList = new LinkedHashSet<Vehicle>();
+	private Set<Vehicle> vehicleList = Sets.newConcurrentHashSet();
 
 	public Set<Vehicle> getVehicleList() {
 		return vehicleList;
@@ -46,6 +47,23 @@ public class VehicleOwner extends BaseEntity<VehicleOwner> {
 
 	public void setVehicleList(Set<Vehicle> vehicleList) {
 		this.vehicleList.addAll(vehicleList);
+	}
+
+	public void addVehicle(Vehicle vehicle) {
+		this.vehicleList.add(vehicle);
+		vehicle.setVehicleOwner(this);
+	}
+
+	public void removeVehicle(Vehicle vehicle) {
+
+		Optional<Vehicle> who = this.vehicleList.stream()
+				.filter(vehicleToFind -> vehicleToFind.getId() == vehicle.getId()).findAny();
+		
+		if (who.isPresent()) {
+			this.vehicleList.remove(who.get());			
+		}
+
+		vehicle.setVehicleOwner(null);
 	}
 
 	@Override

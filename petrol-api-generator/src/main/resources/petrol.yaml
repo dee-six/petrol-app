@@ -227,6 +227,10 @@ components:
           maximum: 50
           minimum: 10
           type: string
+        description:
+          maximum: 50
+          minimum: 10
+          type: string          
         address1:
           maximum: 50
           minimum: 10

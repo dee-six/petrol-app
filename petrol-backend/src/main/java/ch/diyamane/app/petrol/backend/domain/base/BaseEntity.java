@@ -9,12 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 /**
  * @author The Boss
  * @param <T>
  *
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 @MappedSuperclass
+@SuperBuilder
 public abstract class BaseEntity<T> implements Entity<T> {
 
 	@Id
