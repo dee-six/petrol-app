@@ -1,25 +1,21 @@
-/**
- *
- */
 package ch.diyamane.petrol.domain.owner;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import ch.diyamane.app.petrol.backend.TestRepositoryConfiguration;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-import ch.diyamane.app.petrol.backend.TestRepositoryConfiguration;
 import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
 import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
@@ -27,16 +23,18 @@ import ch.diyamane.app.petrol.backend.dto.StatusEnum;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRespository;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.test.context.TestPropertySource;
 
 /**
  * @author dee
  *
  */
-@SpringBootTest(classes = VehicleOwnerTest.class)
+@SpringBootTest(classes = VehicleOwnerIntegrationTest.class)
 @Import({ PetrolBackendConfiguration.class, TestRepositoryConfiguration.class })
 @Transactional
 @Slf4j
-public class VehicleOwnerTest {
+@TestPropertySource(properties = {"ch.diyamane.app.petrol.initData=false"})
+public class VehicleOwnerIntegrationTest {
 
 	@Autowired
 	private VehicleOwnerRespository vehicleOwnerRepo;
@@ -82,7 +80,7 @@ public class VehicleOwnerTest {
 		// Get first car
 		List<Vehicle> vechicles = vehicleRepo.findAll();
 
-		Assertions.assertTrue(vehicleRepo.findAll().size() == 3);
+		Assertions.assertEquals(vehicleRepo.findAll().size(), 3);
 
 		Optional<VehicleOwner> deepak = vehicleOwnerRepo.findById(vehicleOwnerDeepak.getId());
 

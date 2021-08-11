@@ -1,11 +1,8 @@
 package ch.diyamane.app.petrol.backend.interfaces;
 
 import ch.diyamane.app.petrol.backend.api.PumpShopsApi;
-import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
 import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
-import ch.diyamane.app.petrol.backend.mapper.PumpShopMapper;
-import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
-import ch.diyamane.app.petrol.backend.service.PumShopService;
+import ch.diyamane.app.petrol.backend.service.PumpShopService;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +15,7 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 public class PumpshopController implements PumpShopsApi {
 
-	PumShopService pumShopService;
+	PumpShopService pumShopService;
 
 	@Override
 	public ResponseEntity<PumpShopDto> addPumpshop(PumpShopDto dto) {

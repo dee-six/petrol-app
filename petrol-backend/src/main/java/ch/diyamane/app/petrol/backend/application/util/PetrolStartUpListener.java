@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ch.diyamane.app.petrol.backend.application.util;
 
 import javax.transaction.Transactional;
@@ -22,16 +19,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class PetrolStartUpListener {
 
-	@Autowired
-	private PetrolStartUpService _pStartUpService;
+  @Autowired
+  private PetrolStartUpService petrolStartUpService;
 
-	@EventListener
-	public void contextInitialized(ContextRefreshedEvent event) {
+  @EventListener
+  public void contextInitialized(ContextRefreshedEvent event) {
 
-		//_pStartUpService.initSchema();
+    petrolStartUpService.initSchema();
 
-		log.info("Petrol Schema initialized");
-
-	}
+  }
 
 }

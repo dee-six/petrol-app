@@ -14,9 +14,8 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class PumShopService {
+public class PumpShopService {
 
-	@Autowired
 	PumpShopRepository pumpShopRepository;
 
 	public PumpShopDto save(PumpShopDto dto) {
@@ -40,11 +39,7 @@ public class PumShopService {
 	public PumpShopDto findById(Long id) {
 		
 		Optional<PumpShop> what = pumpShopRepository.findById(id);
-		if (what.isPresent()) {
-			return PumpShopMapper.toDto(what.get());
-		} else {
-			return null;
-		}
+		return what.map(PumpShopMapper::toDto).orElse(null);
 	}
 
 	public List<PumpShopDto> findAll() {
