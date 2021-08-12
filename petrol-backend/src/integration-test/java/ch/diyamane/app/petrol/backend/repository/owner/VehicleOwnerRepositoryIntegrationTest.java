@@ -1,10 +1,9 @@
-package ch.diyamane.petrol.domain.owner;
+package ch.diyamane.app.petrol.backend.repository.owner;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ch.diyamane.app.petrol.backend.TestRepositoryConfiguration;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,12 +28,12 @@ import org.springframework.test.context.TestPropertySource;
  * @author dee
  *
  */
-@SpringBootTest(classes = VehicleOwnerIntegrationTest.class)
-@Import({ PetrolBackendConfiguration.class, TestRepositoryConfiguration.class })
+@SpringBootTest(classes = VehicleOwnerRepositoryIntegrationTest.class)
+@Import({ PetrolBackendConfiguration.class})
 @Transactional
 @Slf4j
 @TestPropertySource(properties = {"ch.diyamane.app.petrol.initData=false"})
-public class VehicleOwnerIntegrationTest {
+public class VehicleOwnerRepositoryIntegrationTest {
 
 	@Autowired
 	private VehicleOwnerRespository vehicleOwnerRepo;

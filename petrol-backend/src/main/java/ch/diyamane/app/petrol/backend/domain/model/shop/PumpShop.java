@@ -16,12 +16,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "PUMP_SHOP")
 @Data
 @EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public class PumpShop extends BaseEntity<PumpShop> {

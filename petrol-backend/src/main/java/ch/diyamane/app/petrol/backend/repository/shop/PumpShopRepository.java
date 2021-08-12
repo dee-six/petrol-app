@@ -1,6 +1,3 @@
-/**
- *
- */
 package ch.diyamane.app.petrol.backend.repository.shop;
 
 import java.io.Serializable;
@@ -15,6 +12,6 @@ import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
  *
  */
 @Repository
-public interface   PumpShopRepository extends JpaRepository<PumpShop, Serializable> {
+public interface PumpShopRepository extends JpaRepository<PumpShop, Serializable> {
 
 }

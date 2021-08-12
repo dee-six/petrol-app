@@ -1,8 +1,4 @@
-/**
- *
- */
-package ch.diyamane.app.petrol.backend.repository.shop
-;
+package ch.diyamane.app.petrol.backend.repository.shop;
 
 import java.io.Serializable;
 

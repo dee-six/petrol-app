@@ -7,10 +7,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@ComponentScan("ch.diyamane.app.petrol.backend")
+@ComponentScan(basePackages = "ch.diyamane.app.petrol.backend")
 @PropertySource("classpath:application-backend.properties")
 public class PetrolBackendConfiguration {
-
-
 
 }

@@ -15,6 +15,7 @@ import ch.diyamane.app.petrol.backend.domain.base.BaseEntity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -22,6 +23,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder
+@NoArgsConstructor
 public class Pumping extends BaseEntity<Pumping> {
 
 	@Column(name = "START_READING", nullable = false)
