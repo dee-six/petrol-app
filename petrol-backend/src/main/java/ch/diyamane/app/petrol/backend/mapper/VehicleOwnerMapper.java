@@ -6,6 +6,7 @@ import ch.diyamane.app.petrol.backend.dto.VehicleDto;
 import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
 import com.google.common.collect.Lists;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class VehicleOwnerMapper {
@@ -15,25 +16,32 @@ public class VehicleOwnerMapper {
 
   public static VehicleOwnerDto toDto(VehicleOwner vo) {
 
-    VehicleOwnerDto dto = VehicleOwnerDto.builder().id(vo.getId().toString()).name(vo.getName())
+    if (vo == null) {
+      return null;
+    }
+
+    VehicleOwnerDto dto = VehicleOwnerDto.builder().id(vo.getId().intValue()).name(vo.getName())
         .address1(vo.getAddress1()).address2(vo.getAddress2())
         .city(vo.getCity()).pinCode(vo.getPinCode())
         .country(vo.getCountry()).build();
 
-    List<VehicleDto> vehicleDtos = Lists.newArrayList();
-    vo.getVehicleList().forEach(
-        vehicle -> vehicleDtos.add(VehicleDto.builder().model(vehicle.getModel()).id(vehicle.getId().toString()).build()));
+    dto.setOwnedVehicles(vo.getVehicleList().stream().map(VehicleMapper::toDto).collect(Collectors.toList()));
 
-    dto.setOwnedVehicles(vehicleDtos);
     return dto;
   }
 
   public static VehicleOwner to(VehicleOwnerDto vehicleOwnerDto) {
 
+    if (vehicleOwnerDto == null) {
+      return null;
+    }
+
     VehicleOwner vo = VehicleOwner.builder().name(vehicleOwnerDto.getName())
         .address1(vehicleOwnerDto.getAddress1()).address2(vehicleOwnerDto.getAddress2())
         .city(vehicleOwnerDto.getCity()).pinCode(vehicleOwnerDto.getPinCode())
-        .country(vehicleOwnerDto.getCountry()).build();
+        .country(vehicleOwnerDto.getCountry())
+        .id(vehicleOwnerDto.getId() == null ? null : vehicleOwnerDto.getId().longValue())
+        .build();
 
     List<Vehicle> vehicles = Lists.newArrayList();
 

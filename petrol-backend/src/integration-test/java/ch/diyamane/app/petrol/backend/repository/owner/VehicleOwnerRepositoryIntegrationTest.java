@@ -10,6 +10,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,67 +27,49 @@ import org.springframework.test.context.TestPropertySource;
 
 /**
  * @author dee
- *
  */
 @SpringBootTest(classes = VehicleOwnerRepositoryIntegrationTest.class)
-@Import({ PetrolBackendConfiguration.class})
+@Import({PetrolBackendConfiguration.class})
 @Transactional
 @Slf4j
 @TestPropertySource(properties = {"ch.diyamane.app.petrol.initData=false"})
 public class VehicleOwnerRepositoryIntegrationTest {
 
-	@Autowired
-	private VehicleOwnerRespository vehicleOwnerRepo;
+  @Autowired
+  private VehicleOwnerRespository vehicleOwnerRepo;
 
-	@Autowired
-	private VehicleRepository vehicleRepo;
+  @Autowired
+  private VehicleRepository vehicleRepo;
 
-	@Test
-	public void testInsertVehicleOwner() {
+  VehicleOwner vehicleOwnerDeepak;
 
-		log.info("Executing testInsertVehicleOwner");
+  @BeforeEach
+  void setUp() {
 
-		vehicleOwnerRepo.save(VehicleOwner.builder().name("Deepak").address1("Alfred Comtre-Str 01").address2("")
-				.city("Dietikon").country("Switzerland").status(StatusEnum.ACTIVE).build());
+    VehicleOwner vehicleOwnerDeepakToSave = VehicleOwner.builder().name("Deepak").address1("Alfred Comtre-Str 01")
+        .address2("").city("Dietikon").pinCode("8953").country("Switzerland").status(StatusEnum.ACTIVE).build();
 
-		vehicleOwnerRepo.save(VehicleOwner.builder().name("Diya").address1("Alfred Comtre-Str 01").address2("")
-				.city("Dietikon").country("Switzerland").status(StatusEnum.ACTIVE).build());
+    vehicleOwnerDeepakToSave.addVehicle(Vehicle.builder().model("Ford").build());
+    vehicleOwnerDeepakToSave.addVehicle(Vehicle.builder().model("BMW").build());
+    vehicleOwnerDeepakToSave.addVehicle(Vehicle.builder().model("BENZ").build());
 
-		vehicleOwnerRepo.save(VehicleOwner.builder().name("Archana").address1("Alfred Comtre-Str 01").address2("")
-				.city("Dietikon").country("Switzerland").status(StatusEnum.ACTIVE).build());
+    vehicleOwnerDeepak = vehicleOwnerRepo.saveAndFlush(vehicleOwnerDeepakToSave);
+  }
 
-		// 4 Object created
+  @Test
+  public void givenVehicleOwner_WhenCreateVehicle_ThenVehicleCreated() {
 
-		Assertions.assertEquals(3, vehicleOwnerRepo.findAll().size());
+    // Get first car
+    List<Vehicle> vechicles = vehicleRepo.findAll();
 
-	}
+    Assertions.assertEquals(vehicleRepo.findAll().size(), 3);
 
-	@Test
-	public void givenVehicleOwner_WhenCreateVehicle_ThenVehicleCreated() {
+    Optional<VehicleOwner> deepak = vehicleOwnerRepo.findById(vehicleOwnerDeepak.getId());
 
-		// Create a new Car and a add a new Owner
-		// 5 Owner created
+    assertAll("Verify Associated Cars", () -> assertTrue(deepak.isPresent()),
+        () -> assertEquals(3, deepak.get().getVehicleList().size()),
+        () -> assertTrue(deepak.get().getVehicleList().stream().filter(vehi -> vehi.getModel().equals("Ford"))
+            .findAny().isPresent()));
 
-		VehicleOwner vehicleOwnerDeepak = VehicleOwner.builder().name("Deepak").address1("Alfred Comtre-Str 01")
-				.address2("").city("Dietikon").country("Switzerland").status(StatusEnum.ACTIVE).build();
-		
-		vehicleOwnerDeepak.addVehicle(Vehicle.builder().model("Ford").build());
-		vehicleOwnerDeepak.addVehicle(Vehicle.builder().model("BMW").build());
-		vehicleOwnerDeepak.addVehicle(Vehicle.builder().model("BENZ").build());
-
-		vehicleOwnerRepo.saveAndFlush(vehicleOwnerDeepak);
-
-		// Get first car
-		List<Vehicle> vechicles = vehicleRepo.findAll();
-
-		Assertions.assertEquals(vehicleRepo.findAll().size(), 3);
-
-		Optional<VehicleOwner> deepak = vehicleOwnerRepo.findById(vehicleOwnerDeepak.getId());
-
-		assertAll("Verify Associated Cars", () -> assertTrue(deepak.isPresent()),
-				() -> assertEquals(3, deepak.get().getVehicleList().size()),
-				() -> assertTrue(deepak.get().getVehicleList().stream().filter(vehi -> vehi.getModel().equals("Ford"))
-						.findAny().isPresent()));
-
-	}
+  }
 }

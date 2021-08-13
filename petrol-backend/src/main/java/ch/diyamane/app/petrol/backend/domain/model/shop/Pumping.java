@@ -21,7 +21,6 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "PUMPING")
 @Data
-@EqualsAndHashCode(callSuper = false)
 @SuperBuilder
 @NoArgsConstructor
 public class Pumping extends BaseEntity<Pumping> {
@@ -82,6 +81,9 @@ public class Pumping extends BaseEntity<Pumping> {
 				+ ", petrolPrice=" + petrolPricePerLiter + ", pumpShop=" + pumpShop + "]";
 	}
 
-	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
 }

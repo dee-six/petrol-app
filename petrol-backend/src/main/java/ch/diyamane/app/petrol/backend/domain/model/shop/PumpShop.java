@@ -22,13 +22,12 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "PUMP_SHOP")
 @Data
-@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public class PumpShop extends BaseEntity<PumpShop> {
 
-	@Column(name = "NAME", nullable = false)
+	@Column(name = "NAME", nullable = false, length = 50)
 	private String name;
 
 	@Column(name = "DESCRIPTION", nullable = false)
@@ -40,13 +39,13 @@ public class PumpShop extends BaseEntity<PumpShop> {
 	@Column(name = "ADDRESS2")
 	private String address2;
 
-	@Column(name = "ZIP_CODE")
+	@Column(name = "ZIP_CODE", length = 10)
 	private String zipCode;
 
-	@Column(name = "CITY")
+	@Column(name = "CITY", length = 35)
 	private String city;
 
-	@Column(name = "COUNTRY")
+	@Column(name = "COUNTRY", length = 35)
 	private String country;
 
 	@OneToMany(mappedBy = "pumpShop", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -72,6 +71,7 @@ public class PumpShop extends BaseEntity<PumpShop> {
 
 	public void addPumping(Pumping pumping) {
 		getPumpings().add(pumping);
+		pumping.setPumpShop(this);
 	}
 
 	@Override
@@ -79,6 +79,9 @@ public class PumpShop extends BaseEntity<PumpShop> {
 		return "PumpShop [id=" + getId() + ", name=" + name + ", description=" + description + ", address1=" + address1
 				+ ", address2=" + address2 + ", zipCode=" + zipCode + ", city=" + city + ", country=" + country + "]";
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 }

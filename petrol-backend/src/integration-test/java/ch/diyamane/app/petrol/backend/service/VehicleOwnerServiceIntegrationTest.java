@@ -40,7 +40,7 @@ public class VehicleOwnerServiceIntegrationTest {
   void setUp() {
 
     vehicleOwnerDeepak = VehicleOwner.builder().name("Deepak").address1("Alfred Comtre-Str 01")
-        .address2("").city("Dietikon").country("Switzerland").status(StatusEnum.ACTIVE).build();
+        .address2("").city("Dietikon").country("Switzerland").pinCode("8953").status(StatusEnum.ACTIVE).build();
 
     vehicleOwnerDeepak.addVehicle(Vehicle.builder().model("Ford").build());
     vehicleOwnerDeepak.addVehicle(Vehicle.builder().model("BMW").build());
@@ -51,7 +51,7 @@ public class VehicleOwnerServiceIntegrationTest {
   }
 
   @Test
-  public void givenVehicleOwner_WhenFindAll_ThenOneVehicleOnwerIsFound() {
+  public void givenVehicleOwner_WhenFindAll_ThenOneVehicleOwnerIsFound() {
 
     List<VehicleOwnerDto> dtos = vehicleOwnerService.findAll();
 

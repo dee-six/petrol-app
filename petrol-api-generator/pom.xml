@@ -107,7 +107,7 @@
               <inputSpec>${project.basedir}/src/main/resources/petrol.yaml</inputSpec>
               <generatorName>typescript-angular</generatorName>
               <output>${project.basedir}/../petrol-web-app/src/app/gen</output>
-              <validateSpec>false</validateSpec>
+              <skipValidateSpec>true</skipValidateSpec>
               <configOptions>
                 <npmName>petrol-web-app</npmName>
                 <providedInRoot>true</providedInRoot>

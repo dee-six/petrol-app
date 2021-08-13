@@ -18,6 +18,32 @@
         }
     ],
     "paths": {
+        "/petrol/pumping": {
+            "get": {
+                "tags": [
+                    "Pumpings"
+                ],
+                "summary": "Get all pumpings",
+                "description": "",
+                "parameters": [],
+                "operationId": "getAllPumpings",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PumpingsDto"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                }
+            }
+        },
         "/petrol/pumping/byPumpshop/{id}": {
             "get": {
                 "tags": [
@@ -77,7 +103,8 @@
                     }
                 },
                 "operationId": "getPumpshops",
-                "description": "Get a list of Pumpshops"
+                "description": "Get a list of Pumpshops",
+                "parameters": []
             },
             "put": {
                 "requestBody": {
@@ -107,7 +134,8 @@
                     }
                 },
                 "operationId": "updatePumpshop",
-                "description": "Update a Pumpshop"
+                "description": "Update a Pumpshop",
+                "parameters": []
             },
             "post": {
                 "requestBody": {
@@ -137,7 +165,8 @@
                     }
                 },
                 "operationId": "addPumpshop",
-                "description": "Add a Pumpshop"
+                "description": "Add a Pumpshop",
+                "parameters": []
             }
         },
         "/petrol/pumpshop/{id}": {
@@ -209,7 +238,7 @@
                     }
                 },
                 "operationId": "findAllByStatus",
-                "description": "Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array "
+                "description": "Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array"
             }
         },
         "/petrol/vehicleowner": {
@@ -233,7 +262,8 @@
                     }
                 },
                 "operationId": "findAll",
-                "description": "Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array "
+                "description": "Gets `VehicleOwnerDto` objects. Optional query param of **size** determines size of returned array",
+                "parameters": []
             },
             "put": {
                 "requestBody": {
@@ -263,7 +293,8 @@
                     }
                 },
                 "operationId": "updateOwner",
-                "description": "Update  a new Vehicle Owner"
+                "description": "Update  a new Vehicle Owner",
+                "parameters": []
             },
             "post": {
                 "requestBody": {
@@ -293,7 +324,8 @@
                     }
                 },
                 "operationId": "addVehicleOwner",
-                "description": "Create a new Vehicle Owner"
+                "description": "Create a new Vehicle Owner",
+                "parameters": []
             }
         },
         "/petrol/vehicleowner/{id}": {
@@ -345,17 +377,22 @@
                         "minimum": 10,
                         "type": "string"
                     },
+                    "description": {
+                        "maximum": 255,
+                        "minimum": 10,
+                        "type": "string"
+                    },
                     "address1": {
-                        "maximum": 50,
+                        "maximum": 255,
                         "minimum": 10,
                         "type": "string"
                     },
                     "address2": {
-                        "maximum": 50,
+                        "maximum": 255,
                         "type": "string"
                     },
                     "city": {
-                        "maximum": 20,
+                        "maximum": 35,
                         "minimum": 2,
                         "type": "string"
                     },
@@ -365,7 +402,7 @@
                         "type": "string"
                     },
                     "country": {
-                        "maximum": 20,
+                        "maximum": 35,
                         "minimum": 2,
                         "type": "string"
                     }
@@ -415,9 +452,11 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "type": "string"
+                        "type": "integer"
                     },
                     "model": {
+                        "maximum": 255,
+                        "minimum": 3,
                         "type": "string"
                     }
                 }
@@ -426,7 +465,7 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "type": "string"
+                        "type": "integer"
                     },
                     "name": {
                         "maximum": 50,
@@ -434,16 +473,16 @@
                         "type": "string"
                     },
                     "address1": {
-                        "maximum": 50,
+                        "maximum": 255,
                         "minimum": 10,
                         "type": "string"
                     },
                     "address2": {
-                        "maximum": 50,
+                        "maximum": 255,
                         "type": "string"
                     },
                     "city": {
-                        "maximum": 20,
+                        "maximum": 35,
                         "minimum": 2,
                         "type": "string"
                     },
@@ -453,7 +492,7 @@
                         "type": "string"
                     },
                     "country": {
-                        "maximum": 20,
+                        "maximum": 35,
                         "minimum": 2,
                         "type": "string"
                     },
@@ -475,7 +514,9 @@
                 ],
                 "type": "string"
             }
-        }
+        },
+        "links": {},
+        "callbacks": {}
     },
     "tags": [
         {
@@ -487,5 +528,6 @@
         {
             "name": "VehicleOwner"
         }
-    ]
+    ],
+    "security": []
 }

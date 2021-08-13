@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import ch.diyamane.app.petrol.backend.TestRepositoryConfiguration;
 import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
 import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
 import java.util.List;

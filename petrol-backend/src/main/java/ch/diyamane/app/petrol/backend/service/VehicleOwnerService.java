@@ -23,11 +23,9 @@ public class VehicleOwnerService {
 
   public VehicleOwnerDto addVehicleOwner(VehicleOwnerDto dto) {
 
-    VehicleOwner toSaveVo = VehicleOwnerMapper.to(dto);
+    VehicleOwner vo = vehicleOwnerRespository.save(VehicleOwnerMapper.to(dto));
 
-    VehicleOwner vo = vehicleOwnerRespository.save(toSaveVo);
-
-    dto.setId(vo.getId().toString());
+    dto.setId(vo.getId().intValue());
 
     return dto;
   }

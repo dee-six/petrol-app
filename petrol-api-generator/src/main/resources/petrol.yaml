@@ -5,12 +5,29 @@ info:
   contact:
     name: Deepak
     email: deepak.rampoore@gmail.com
-  x-logo:
-    url: ''
 servers:
-  - url: 'http://localhost:8080/api'
-    description: ''
+  - url: >-
+      https://virtserver.swaggerhub.com/petrol-app/diya-mane_petrol_single_page_portal/1.0-oas3
+    description: SwaggerHub API Auto Mocking
+  - url: 'http://www.localhost.com:1010/api'
 paths:
+  /petrol/pumping:
+    get:
+      tags:
+        - Pumpings
+      summary: Get all pumpings
+      description: ''
+      parameters: []
+      operationId: getAllPumpings
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PumpingsDto'
+          description: Successful response
   '/petrol/pumping/byPumpshop/{id}':
     get:
       tags:
@@ -51,6 +68,7 @@ paths:
           description: Successful response
       operationId: getPumpshops
       description: Get a list of Pumpshops
+      parameters: []
     put:
       requestBody:
         description: Pumpshop to be updated
@@ -70,6 +88,7 @@ paths:
           description: Successful response
       operationId: updatePumpshop
       description: Update a Pumpshop
+      parameters: []
     post:
       requestBody:
         description: Pumpshop to be created
@@ -89,6 +108,7 @@ paths:
           description: Successful response
       operationId: addPumpshop
       description: Add a Pumpshop
+      parameters: []
   '/petrol/pumpshop/{id}':
     get:
       tags:
@@ -122,7 +142,7 @@ paths:
           name: status
           description: Status of the VehicleOwner
           schema:
-            $ref: '#/components/schemas/StatusEnum'
+            $ref: '#/components/schemas/statusEnum'
           in: path
           required: true
       responses:
@@ -137,7 +157,7 @@ paths:
       operationId: findAllByStatus
       description: >-
         Gets `VehicleOwnerDto` objects. Optional query param of **size**
-        determines size of returned array 
+        determines size of returned array
   /petrol/vehicleowner:
     get:
       tags:
@@ -154,7 +174,8 @@ paths:
       operationId: findAll
       description: >-
         Gets `VehicleOwnerDto` objects. Optional query param of **size**
-        determines size of returned array 
+        determines size of returned array
+      parameters: []
     put:
       requestBody:
         description: Vehicle to be updated
@@ -174,6 +195,7 @@ paths:
           description: Successful response
       operationId: updateOwner
       description: Update  a new Vehicle Owner
+      parameters: []
     post:
       requestBody:
         description: Vehicle to be created
@@ -193,6 +215,7 @@ paths:
           description: Successful response
       operationId: addVehicleOwner
       description: Create a new Vehicle Owner
+      parameters: []
   '/petrol/vehicleowner/{id}':
     get:
       tags:
@@ -228,18 +251,18 @@ components:
           minimum: 10
           type: string
         description:
-          maximum: 50
+          maximum: 255
           minimum: 10
-          type: string          
+          type: string
         address1:
-          maximum: 50
+          maximum: 255
           minimum: 10
           type: string
         address2:
-          maximum: 50
+          maximum: 255
           type: string
         city:
-          maximum: 20
+          maximum: 35
           minimum: 2
           type: string
         zipCode:
@@ -247,9 +270,13 @@ components:
           minimum: 4
           type: string
         country:
-          maximum: 20
+          maximum: 35
           minimum: 2
           type: string
+        pumpings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PumpingsDto'
     PumpingsDto:
       type: object
       properties:
@@ -281,43 +308,29 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type: integer
         model:
+          maximum: 255
+          minimum: 3
           type: string
-    SubscribedEnum:
-      format: ''
-      pattern: ''
-      enum:
-        - 'YES'
-        - 'No'
-      type: string
-      example: ''
-      x-last-modified: 1609023083734
-    StatusEnum:
-      enum:
-        - ACTIVE
-        - INACTIVE
-      type: string
-      example: ''
-      x-last-modified: 1609023100145
     VehicleOwnerDto:
       type: object
       properties:
         id:
-          type: string
+          type: integer
         name:
           maximum: 50
           minimum: 10
           type: string
         address1:
-          maximum: 50
+          maximum: 255
           minimum: 10
           type: string
         address2:
-          maximum: 50
+          maximum: 255
           type: string
         city:
-          maximum: 20
+          maximum: 35
           minimum: 2
           type: string
         pinCode:
@@ -325,22 +338,22 @@ components:
           minimum: 4
           type: string
         country:
-          maximum: 20
+          maximum: 35
           minimum: 2
           type: string
-        subscribed:
-          $ref: '#/components/schemas/SubscribedEnum'
         status:
-          $ref: '#/components/schemas/StatusEnum'
+          $ref: '#/components/schemas/statusEnum'
         ownedVehicles:
           type: array
           items:
             $ref: '#/components/schemas/VehicleDto'
-      example: ''
-      x-last-modified: 1609023137278
-  securitySchemes: {}
-  responses: {}
-  parameters: {}
+    statusEnum:
+      enum:
+        - ACTIVE
+        - INACTIVE
+      type: string
+  links: {}
+  callbacks: {}
 tags:
   - name: PumpShops
   - name: Pumpings

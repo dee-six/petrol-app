@@ -16,34 +16,23 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PumpShopService {
 
-	PumpShopRepository pumpShopRepository;
+  PumpShopRepository pumpShopRepository;
 
-	public PumpShopDto save(PumpShopDto dto) {
+  public PumpShopDto save(PumpShopDto dto) {
+    return PumpShopMapper.toDto(pumpShopRepository.save(PumpShopMapper.toPumpShop(dto)));
+  }
 
-		PumpShop pumpShop = PumpShop.builder().address1(dto.getAddress1()).address2(dto.getAddress2())
-				.city(dto.getCity()).country(dto.getCountry()).name(dto.getName()).description(dto.getDescription())
-				.build();
+  public PumpShopDto update(PumpShopDto dto) {
+    return PumpShopMapper.toDto(pumpShopRepository.save(PumpShopMapper.toPumpShop(dto)));
+  }
 
-		return PumpShopMapper.toDto(pumpShopRepository.save(pumpShop));
+  public PumpShopDto findById(Long id) {
+    Optional<PumpShop> what = pumpShopRepository.findById(id);
+    return what.map(PumpShopMapper::toDto).orElse(null);
+  }
 
-	}
-
-	public PumpShopDto update(PumpShopDto dto) {
-		PumpShop pumpShop = PumpShop.builder().address1(dto.getAddress1()).address2(dto.getAddress2())
-				.city(dto.getCity()).country(dto.getCountry()).name(dto.getName()).description(dto.getDescription())
-				.id(dto.getId().longValue()).build();
-
-		return PumpShopMapper.toDto(pumpShopRepository.save(pumpShop));
-	}
-
-	public PumpShopDto findById(Long id) {
-		
-		Optional<PumpShop> what = pumpShopRepository.findById(id);
-		return what.map(PumpShopMapper::toDto).orElse(null);
-	}
-
-	public List<PumpShopDto> findAll() {
-		return PumpShopMapper.toDto(pumpShopRepository.findAll());
-	}
+  public List<PumpShopDto> findAll() {
+    return PumpShopMapper.toDto(pumpShopRepository.findAll());
+  }
 
 }

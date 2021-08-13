@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,14 +28,25 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class VehicleOwner extends BaseEntity<VehicleOwner> {
 
+	@Column(nullable = false, length = 50)
 	private String name;
+
+	@Column(nullable = false)
 	private String address1;
+
 	private String address2;
-	private String city;
+
+	@Column(nullable = false, length = 35)
+		private String city;
+
+	@Column(nullable = false, length = 10)
 	private String pinCode;
+
+	@Column(nullable = false, length = 35)
 	private String country;
 
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private StatusEnum status;
 
 	@OneToMany(mappedBy = "vehicleOwner", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
