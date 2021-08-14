@@ -27,12 +27,17 @@ public class PumpShopMapper {
       return null;
     }
 
-    return PumpShop.builder().address1(dto.getAddress1()).address2(dto.getAddress2()).city(dto.getCity())
+    PumpShop pumpShop = PumpShop.builder().address1(dto.getAddress1()).address2(dto.getAddress2()).city(dto.getCity())
         .country(dto.getCountry()).name(dto.getName()).zipCode(dto.getZipCode())
         .description(dto.getDescription())
         .id(dto.getId() == null ? null : dto.getId().longValue())
         .build();
 
+    if (dto.getPumpings() != null) {
+      pumpShop.addPumpings(dto.getPumpings().stream().map(PumpingsMapper::toPumpings).collect(Collectors.toSet()));
+    }
+
+    return pumpShop;
   }
 
   public static List<PumpShopDto> toDto(List<PumpShop> findAll) {

@@ -23,7 +23,7 @@ public class VehicleOwnerMapper {
     VehicleOwnerDto dto = VehicleOwnerDto.builder().id(vo.getId().intValue()).name(vo.getName())
         .address1(vo.getAddress1()).address2(vo.getAddress2())
         .city(vo.getCity()).pinCode(vo.getPinCode())
-        .country(vo.getCountry()).build();
+        .country(vo.getCountry()).status(vo.getStatus()).build();
 
     dto.setOwnedVehicles(vo.getVehicleList().stream().map(VehicleMapper::toDto).collect(Collectors.toList()));
 
@@ -39,11 +39,9 @@ public class VehicleOwnerMapper {
     VehicleOwner vo = VehicleOwner.builder().name(vehicleOwnerDto.getName())
         .address1(vehicleOwnerDto.getAddress1()).address2(vehicleOwnerDto.getAddress2())
         .city(vehicleOwnerDto.getCity()).pinCode(vehicleOwnerDto.getPinCode())
-        .country(vehicleOwnerDto.getCountry())
+        .country(vehicleOwnerDto.getCountry()).status(vehicleOwnerDto.getStatus())
         .id(vehicleOwnerDto.getId() == null ? null : vehicleOwnerDto.getId().longValue())
         .build();
-
-    List<Vehicle> vehicles = Lists.newArrayList();
 
     if (!vehicleOwnerDto.getOwnedVehicles().isEmpty()) {
       vehicleOwnerDto.getOwnedVehicles()

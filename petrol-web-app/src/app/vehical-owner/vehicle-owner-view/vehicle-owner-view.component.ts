@@ -28,14 +28,16 @@ export class VehicleOwnerViewComponent implements OnInit {
 
 	getVehicleOwners() {
 
-    console.log("VehicleOwnerViewComponent is called from service")
+    console.log("VehicleOwnerViewComponent is called from service");
+    return this.vehicleOwners;
+    /*
 		if (this.vehicleOwners.length == 0) {
 			this.vehicleService.findAll().subscribe((vehicleOwners: VehicleOwnerDto[]) => {
 				this.vehicleOwners = vehicleOwners;
 			})
 		}
 
-		return this.vehicleOwners;
+		return this.vehicleOwners;*/
 	}
 
 	getTitle() {

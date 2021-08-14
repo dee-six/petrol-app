@@ -243,6 +243,8 @@ components:
   schemas:
     PumpShopDto:
       type: object
+      required:
+        - pumpings
       properties:
         id:
           type: integer
@@ -275,6 +277,7 @@ components:
           type: string
         pumpings:
           type: array
+          nullable: false
           items:
             $ref: '#/components/schemas/PumpingsDto'
     PumpingsDto:
@@ -315,6 +318,8 @@ components:
           type: string
     VehicleOwnerDto:
       type: object
+      required:
+        - ownedVehicles
       properties:
         id:
           type: integer
@@ -345,6 +350,7 @@ components:
           $ref: '#/components/schemas/statusEnum'
         ownedVehicles:
           type: array
+          nullable: false
           items:
             $ref: '#/components/schemas/VehicleDto'
     statusEnum:

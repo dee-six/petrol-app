@@ -6,6 +6,7 @@ import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
 import ch.diyamane.app.petrol.backend.domain.model.shop.Pumping;
 import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
 import ch.diyamane.app.petrol.backend.dto.PumpingsDto;
+import ch.diyamane.app.petrol.backend.dto.StatusEnum;
 import ch.diyamane.app.petrol.backend.dto.VehicleDto;
 import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRespository;
@@ -63,10 +64,9 @@ public class PetrolStartUpService {
         .description("Coop - description").zipCode("8953").build());
 
     // Vehicle
-
     VehicleOwnerDto deepakVehicleOwnerDto = VehicleOwnerDto.builder().name("Deepak")
         .address1("Funny-Strasse1").address2("Funny-Strasse2")
-        .city("Dietikon").pinCode("8953").country("Switzerland")
+        .city("Dietikon").pinCode("8953").country("Switzerland").status(StatusEnum.ACTIVE)
         .build();
 
     VehicleDto bmw = VehicleDto.builder().model("BMW X Xrive").build();
@@ -79,7 +79,7 @@ public class PetrolStartUpService {
 
     VehicleOwnerDto archanaVehicleOwnerDto = VehicleOwnerDto.builder().name("Archana")
         .address1("Funny-Strasse1").address2("Funny-Strasse2")
-        .city("Dietikon").pinCode("8953").country("Switzerland")
+        .city("Dietikon").pinCode("8953").country("Switzerland").status(StatusEnum.ACTIVE)
         .build();
 
     archanaVehicleOwnerDto.setOwnedVehicles(new ArrayList<VehicleDto>());
@@ -87,7 +87,7 @@ public class PetrolStartUpService {
 
     VehicleOwnerDto diyaVehicleOwnerDto = VehicleOwnerDto.builder().name("Diya")
         .address1("Funny-Strasse1").address2("Funny-Strasse2")
-        .city("Dietikon").pinCode("8953").country("Switzerland")
+        .city("Dietikon").pinCode("8953").country("Switzerland").status(StatusEnum.ACTIVE)
         .build();
     diyaVehicleOwnerDto.setOwnedVehicles(new ArrayList<VehicleDto>());
     vehicleOwnerService.addVehicleOwner(diyaVehicleOwnerDto);
@@ -97,7 +97,7 @@ public class PetrolStartUpService {
         .milagePer100Unit(BigDecimal.valueOf(7)).petrolPricePerLiter(BigDecimal.valueOf(1.31))
         .petrolPumpedInLitres(BigDecimal.valueOf(50.34)).pumpDate(LocalDate.now()).build();
 
-    pump.pumpShop(pumpShopDto);
+    pumpShopDto.addPumpingsItem(pump);
 
     pumpShopService.save(pumpShopDto);
 
