@@ -39,13 +39,13 @@ public class PumpShop extends BaseEntity<PumpShop> {
 	@Column(name = "ADDRESS2")
 	private String address2;
 
-	@Column(name = "ZIP_CODE", length = 10)
+	@Column(name = "ZIP_CODE", nullable = false, length = 10)
 	private String zipCode;
 
-	@Column(name = "CITY", length = 35)
+	@Column(name = "CITY", nullable = false, length = 35)
 	private String city;
 
-	@Column(name = "COUNTRY", length = 35)
+	@Column(name = "COUNTRY", nullable = false, length = 35)
 	private String country;
 
 	@OneToMany(mappedBy = "pumpShop", cascade = CascadeType.ALL, orphanRemoval = true)

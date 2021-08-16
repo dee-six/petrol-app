@@ -244,7 +244,11 @@ components:
     PumpShopDto:
       type: object
       required:
-        - pumpings
+        - name
+        - address1
+        - city
+        - zinCode
+        - country
       properties:
         id:
           type: integer
@@ -319,7 +323,12 @@ components:
     VehicleOwnerDto:
       type: object
       required:
-        - ownedVehicles
+        - name
+        - address1
+        - city
+        - pinCode
+        - country
+        - status
       properties:
         id:
           type: integer
@@ -350,7 +359,6 @@ components:
           $ref: '#/components/schemas/statusEnum'
         ownedVehicles:
           type: array
-          nullable: false
           items:
             $ref: '#/components/schemas/VehicleDto'
     statusEnum:

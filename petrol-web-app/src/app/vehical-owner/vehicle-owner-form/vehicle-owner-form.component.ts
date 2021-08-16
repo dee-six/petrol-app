@@ -29,17 +29,15 @@ export class VehicleOwnerFormComponent implements OnInit {
 
 	save(form) {
 		console.log(form);
-		let vehicleOwner: VehicleOwnerDto = {};
-		vehicleOwner.address1 = form.value.owner.address1;
-		vehicleOwner.address2 = form.value.owner.address2;
-		vehicleOwner.city = form.value.owner.city;
-		vehicleOwner.name = form.value.owner.name1;
+		let vehicleOwner: VehicleOwnerDto = {name: form.value.owner.name, address1: form.value.owner.address1,
+		address2: form.value.owner.address2, city: form.value.owner.city, pinCode: form.value.owner.pinCode,
+		country: form.value.owner.country, status: form.value.owner.status};
 
 		this.vehicleService.addVehicleOwner(vehicleOwner).subscribe((vehicleOwner: VehicleOwnerDto) => {
 			console.log("Data SaVE: " + vehicleOwner);
-			
+
 		})
-		
+
 		this.router.navigate(['/vehicleOwners']);
 	}
 }
