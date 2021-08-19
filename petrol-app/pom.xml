@@ -23,12 +23,6 @@
     </dependency>
 
     <dependency>
-      <groupId>ch.diyamane.app</groupId>
-      <artifactId>petrol-backend-api</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
