@@ -14,12 +14,13 @@ import org.springframework.stereotype.Controller;
 import ch.diyamane.app.petrol.backend.api.PumpingsApi;
 import ch.diyamane.app.petrol.backend.dto.PumpingsDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author meetd
  *
  */
-@Controller
+@RestController
 @AllArgsConstructor
 @Slf4j
 public class PumpingsController implements PumpingsApi {

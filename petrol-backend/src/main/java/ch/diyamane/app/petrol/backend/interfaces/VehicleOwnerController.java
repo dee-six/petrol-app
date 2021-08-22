@@ -14,8 +14,9 @@ import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRespository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @Slf4j
 @AllArgsConstructor
 public class VehicleOwnerController implements VehicleOwnerApi {

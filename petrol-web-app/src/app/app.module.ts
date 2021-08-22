@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { VehicleOwnerCrudComponent } from './vehical-owner/vehicle-owner-crud/vehicle-owner-crud.component';
+import { PumpShopViewComponent } from './pump-shop/pump-shop-view/pump-shop-view.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { VehicleOwnerCrudComponent } from './vehical-owner/vehicle-owner-crud/ve
 		SidebarComponent,
 		VehicleOwnerViewComponent,
 		VehicleOwnerFormComponent,
+		PumpShopViewComponent,
 		LoginFormComponent,
 		VehicleOwnerCrudComponent
 	],
@@ -36,7 +38,7 @@ import { VehicleOwnerCrudComponent } from './vehical-owner/vehicle-owner-crud/ve
 
 	providers: [
 		HttpClientModule,
-		{provide: BASE_PATH, useValue: 'api'} 
+		{provide: BASE_PATH, useValue: 'api'}
 	],
 
 	bootstrap: [AppComponent],

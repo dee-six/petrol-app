@@ -1,0 +1,39 @@
+<div style="padding-top: 10mm; padding-bottom: 10mm">
+	<h4>
+		{{ getTitle() }} &nbsp; &nbsp;
+
+		<button id="refresh" type="button" class="btn btn-primary"
+			(click)="onClick($event)">Refresh</button>
+		&nbsp; <a class="btn btn-primary btn-lg active"
+			routerLink="/pumpShops/new" role="button" aria-pressed="true"
+			routerLinkActive="activebutton">New</a>
+	</h4>
+
+	<table class="table table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>PinCode</th>
+        <th>Country</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let pumpShop of getPumpShops()" (dblclick)="openDetails()">
+				<td>{{pumpShop.id}}</td>
+				<td>{{pumpShop.name}}</td>
+				<td>{{pumpShop.description}}</td>
+				<td>{{pumpShop.address1 + ',' + pumpShop.address2}}</td>
+				<td>{{pumpShop.city}}</td>
+				<td>{{pumpShop.zipCode}}</td>
+				<td>{{pumpShop.country}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+

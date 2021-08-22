@@ -50,17 +50,11 @@
         <scope>import</scope>
       </dependency>
 
-      <!-- SpringFox dependencies -->
+      <!-- Springdoc-openapi -->
       <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger2</artifactId>
-        <version>${springfox-version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger-ui</artifactId>
-        <version>${springfox-version}</version>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>1.5.10</version>
       </dependency>
 
       <!-- Main Spring Boot Dependencies -->
