@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ApiModule } from './gen/api.module';
-import {BASE_PATH } from './gen/variables';
+import { BASE_PATH } from './gen/variables';
 import { PanelComponent } from './common/panel.component';
 import { SidebarComponent } from './common/sidebar.component';
 import { VehicleOwnerViewComponent } from './vehical-owner/vehicle-owner-view/vehicle-owner-view.component';
@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { VehicleOwnerCrudComponent } from './vehical-owner/vehicle-owner-crud/vehicle-owner-crud.component';
 import { PumpShopViewComponent } from './pump-shop/pump-shop-view/pump-shop-view.component';
+import { PumpShopDetailViewComponent } from './pump-shop/pump-shop-view/pump-shop-detail-view/pump-shop-detail-view.component';
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,8 @@ import { PumpShopViewComponent } from './pump-shop/pump-shop-view/pump-shop-view
 		VehicleOwnerFormComponent,
 		PumpShopViewComponent,
 		LoginFormComponent,
-		VehicleOwnerCrudComponent
+		VehicleOwnerCrudComponent,
+		PumpShopDetailViewComponent
 	],
 
 	imports: [

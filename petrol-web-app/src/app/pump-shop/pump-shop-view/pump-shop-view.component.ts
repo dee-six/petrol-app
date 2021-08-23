@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PumpShopDto } from '../../gen/model/pumpShopDto';
 import { PumpShopsService } from '../../gen/api/pumpShops.service';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'pumps-shop-list',
@@ -16,7 +16,8 @@ export class PumpShopViewComponent implements OnInit {
 	pumpShops: PumpShopDto[] = [];
 	colspan = 10;
 
-	constructor(private pumpShopService: PumpShopsService) {
+	constructor(private pumpShopService: PumpShopsService, private router: Router) {
+
 	}
 
 	getPumpShops() {
@@ -34,6 +35,7 @@ export class PumpShopViewComponent implements OnInit {
 
   openDetails() {
     console.log("Doubel clicked !");
+    this.router.navigate(['/pumpShops/detail']);
   }
 
 	ngOnInit() {
