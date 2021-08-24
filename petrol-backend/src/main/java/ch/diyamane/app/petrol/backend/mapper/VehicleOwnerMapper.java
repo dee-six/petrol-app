@@ -2,10 +2,7 @@ package ch.diyamane.app.petrol.backend.mapper;
 
 import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
-import ch.diyamane.app.petrol.backend.dto.VehicleDto;
 import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
-import com.google.common.collect.Lists;
-import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -43,7 +40,7 @@ public class VehicleOwnerMapper {
         .id(vehicleOwnerDto.getId() == null ? null : vehicleOwnerDto.getId().longValue())
         .build();
 
-    if (!vehicleOwnerDto.getOwnedVehicles().isEmpty()) {
+    if (vehicleOwnerDto.getOwnedVehicles() != null && !vehicleOwnerDto.getOwnedVehicles().isEmpty()) {
       vehicleOwnerDto.getOwnedVehicles()
           .forEach(vehicle -> vo.addVehicle(Vehicle.builder().model(vehicle.getModel()).build()));
     }

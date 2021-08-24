@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { VehicleOwnerDto } from '../../gen/model/vehicleOwnerDto';
 import { VehicleOwnerService } from '../../gen/api/vehicleOwner.service';
-// import { VehicleOwnerService } from '../../model/vehicle-owner.service';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-vehicle-owner-list',
@@ -18,8 +17,12 @@ export class VehicleOwnerViewComponent implements OnInit {
 	colspan = 10;
 	isActive = false;
 
-	constructor(private vehicleService: VehicleOwnerService) {
+	private vehicleService: VehicleOwnerService;
+	private router: Router;
 
+	constructor(vehicleService: VehicleOwnerService, router: Router) {
+		this.vehicleService = vehicleService;
+		this.router = router;
 	}
 
 	onSave($event) {
@@ -46,6 +49,10 @@ export class VehicleOwnerViewComponent implements OnInit {
 
 	onClick($event) {
 		// this.getVehicleOwners();
+	}
+
+	openDetails() {
+    this.router.navigate(['/vehicleOwners/detail']);
 	}
 
 	ngOnInit() {

@@ -9,6 +9,7 @@
     <div class="form-group">
       <label for="fullName">Full Name</label>
       <input required ngModel id="fullName" name="fullName"
+             [(ngModel)]="vehicleOwner.name"
              minlength="10" maxlength="25"
              #fullName="ngModel"
              (change)=log(fullName) type="text"
@@ -19,39 +20,55 @@
         <div *ngIf="fullName.errors.required">Full name is required</div>
         <div *ngIf="fullName.errors.minlength">Minimum length should be
           {{ fullName.errors.minlength.requiredLength}} but is {{
-          fullName.errors.minlength.actualLength }}</div>
+          fullName.errors.minlength.actualLength }}
+        </div>
       </div>
 
       <small id="emailHelp" class="form-text text-muted">First and Second Name</small>
     </div>
 
     <div class="form-group">
-      <label for="address1">Address Line 1</label> <input id="address1"
-                                                          required ngModel name="address1"
-                                                          #address1="ngModel" type="text"
-                                                          class="form-control">
+      <label for="address1">Address Line 1</label>
+      <input id="address1" name="address1" #address1="ngModel"
+             required ngModel
+             [(ngModel)]="vehicleOwner.address1"
+             type="text"
+             class="form-control">
     </div>
 
     <div class="form-group">
-      <label for="address2">Address Line 2</label> <input id="address2"
-                                                          required ngModel name="address2"
-                                                          #address2="ngModel" type="text"
-                                                          class="form-control">
+      <label for="address2">Address Line 2</label>
+      <input id="address2" name="address2"
+             required ngModel
+             [(ngModel)]="vehicleOwner.address2"
+             #address2="ngModel" type="text"
+             class="form-control">
     </div>
 
     <div class="form-group">
-      <label for="city">City</label> <input id="city" required ngModel #city="ngModel"
-                                            name="city" type="text" class="form-control">
+      <label for="city">City</label>
+      <input id="city" required ngModel #city="ngModel"
+             [(ngModel)]="vehicleOwner.city"
+             name="city" type="text" class="form-control">
     </div>
 
     <div class="form-group">
-      <label for="pincode">PinCode</label> <input id="pincode" required ngModel #pincode="ngModel"
-                                                  type="number" class="form-control">
+      <label for="pinCode">PinCode</label>
+      <input id="pinCode" name="pinCode" required ngModel [(ngModel)]="vehicleOwner.pinCode"
+             #pinCode="ngModel"
+             type="number" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input id="country" name="country" required ngModel [(ngModel)]="vehicleOwner.country"
+             #country="ngModel"
+             type="text" class="form-control">
     </div>
 
     <div class="checkBox">
-      <label for="">
-        <input type="checkBox" ngModel name="isPaid">
+      <label for="isPaid">
+        <input id="isPaid" name="isPaid" type="checkBox" ngModel #isPaid="ngModel">
       </label>
     </div>
     <p>

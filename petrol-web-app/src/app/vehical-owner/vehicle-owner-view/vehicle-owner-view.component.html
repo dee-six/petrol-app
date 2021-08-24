@@ -2,14 +2,13 @@
 	<h4>
 		{{ getTitle() }} &nbsp; &nbsp;
 
-		<button id="refresh" type="button" class="btn btn-primary"
-			(click)="onClick($event)">Refresh</button>
+		<button id="refresh" type="button" class="btn btn-primary" (click)="onClick($event)">Refresh</button>
 		&nbsp; <a class="btn btn-primary btn-lg active"
 			routerLink="/vehicleOwners/new" role="button" aria-pressed="true"
 			routerLinkActive="activebutton">New</a>
 	</h4>
 
-	<table class="table">
+	<table class="table table-hover">
 		<thead class="thead-dark">
 			<tr>
 				<th>ID</th>
@@ -22,7 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let vehicle of getVehicleOwners()">
+			<tr *ngFor="let vehicle of getVehicleOwners()" (dblclick)="openDetails()">
 				<td>{{vehicle.id}}</td>
 				<td>{{vehicle.name}}</td>
 				<td>{{vehicle.address1}}</td>
