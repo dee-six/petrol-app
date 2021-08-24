@@ -16,6 +16,7 @@
 [![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImRlZS1zaXgiLCJyZXBvMSI6InBldHJvbC1hcHAiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNjkyOSwiaWF0IjoxNjExNjkzMTM4fQ.Mtardxcygy6IL0ed7jcSditMHPTHZQHx5QAB16YUa-I)](https://www.deepcode.ai/app/gh/dee-six/petrol-app/_/dashboard?utm_content=gh%2Fdee-six%2Fpetrol-app)
 
 # Code Analysis coming soon from Codacy
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/78348cd2b46749ff87990ef78a127ae5)](https://www.codacy.com/gh/dee-six/petrol-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dee-six/petrol-app&amp;utm_campaign=Badge_Grade)
 
 #### References
 *   Use Open API GUI <https://mermade.github.io/openapi-gui/> to define your API
