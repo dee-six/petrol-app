@@ -1,0 +1,50 @@
+<div class="container">
+
+  <form [formGroup]="pumpShopDetailForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group" formGroupName="header">
+      <h3>Pump Shop</h3>
+
+      <label for="fullName">Name</label>
+      <input class="form-control" id="fullName" name="fullName" type="text" formControlName="fullName" required>
+
+      <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)" class="alert alert-danger">
+        <div *ngIf="fullName.errors?.required">Name is required.</div>
+        <div *ngIf="fullName.errors?.minlength"> Name must be at least 4 characters long.</div>
+        <div *ngIf="fullName.errors?.forbiddenName">Name cannot be Bob.</div>
+      </div>
+
+
+      <label for="description">Description</label>
+      <input class="form-control" id="description" type="text" formControlName="description">
+    </div>
+
+    <div class="form-group" formGroupName="address">
+      <h3>Address</h3>
+
+      <label for="address1">Street</label>
+      <input class="form-control" id="address1" type="text" formControlName="address1">
+
+      <div *ngIf="address1.invalid && (address1.dirty || address1.touched)" class="alert alert-danger">
+        <div *ngIf="address1.errors?.required">Name is required.</div>
+        <div *ngIf="address1.errors?.minlength"> Name must be at least 4 characters long.</div>
+        <div *ngIf="address1.errors?.forbiddenName">Name cannot be Bob.</div>
+      </div>
+
+      <label for="address2"></label>
+      <input class="form-control" id="address2" type="text" formControlName="address2">
+
+      <label for="city">City</label>
+      <input class="form-control" id="city" type="text" formControlName="city">
+
+      <label for="zipCode">Zip Code</label>
+      <input class="form-control" id="zipCode" type="text" formControlName="zipCode">
+
+      <label for="country">Country</label>
+      <input class="form-control" id="country" type="text" formControlName="country">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!pumpShopDetailForm.valid">Save</button>
+
+  </form>
+</div>
