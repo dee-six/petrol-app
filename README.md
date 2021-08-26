@@ -18,6 +18,9 @@
 # Code Analysis coming soon from Codacy
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/20beb1d7a9af4d7fb0164600a83f9a61)](https://app.codacy.com/gh/dee-six/petrol-app?utm_source=github.com&utm_medium=referral&utm_content=dee-six/petrol-app&utm_campaign=Badge_Grade_Settings)
 
+# Synk
+[![Known Vulnerabilities](https://snyk.io/test/github/dee-six/petrol-app/badge.svg)](https://snyk.io/test/github/dee-six/petrol-app/badge.svg)
+
 #### References
 *   Use Open API GUI <https://mermade.github.io/openapi-gui/> to define your API
 *   Use Open API maven command to generate Java and Typescript code [Open API Generator Plugins](https://openapi-generator.tech/docs/plugins "Open API Generator Plugins") 
