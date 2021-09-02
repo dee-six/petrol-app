@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 
 @Component({
 	selector: 'pumps-shop-list',
-	templateUrl: './pump-shop-view.component.html'
+	templateUrl: './pump-shop-overview.component.html'
 })
 
-export class PumpShopViewComponent implements OnInit {
+export class PumpShopOverviewComponent implements OnInit {
 
 	title = "Pump Shops";
 	pumpShops: PumpShopDto[] = [];
@@ -21,7 +21,7 @@ export class PumpShopViewComponent implements OnInit {
 	}
 
 	getPumpShops() {
-    console.log("PumpShopViewComponent is called from service");
+    console.log("PumpShopOverviewComponent is called from service");
     return this.pumpShops;
 	}
 
