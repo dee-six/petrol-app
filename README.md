@@ -22,8 +22,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/dee-six/petrol-app/badge.svg)](https://snyk.io/test/github/dee-six/petrol-app/badge.svg)
 
 # Code Inspector
-[![Code Quality score](https://www.code-inspector.com/project/27224/score/svg)]https://www.code-inspector.com/project/27224/score/svg
-[![Code Grade ](https://www.code-inspector.com/project/27224/status/svg)]https://www.code-inspector.com/project/27224/status/svg
+[![Code Quality score](https://www.code-inspector.com/project/27224/score/svg)](https://www.code-inspector.com/project/27224/score/svg)
+[![Code Grade ](https://www.code-inspector.com/project/27224/status/svg)](https://www.code-inspector.com/project/27224/status/svg)
 
 #### References
 *   Use Open API GUI <https://mermade.github.io/openapi-gui/> to define your API
