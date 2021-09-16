@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:14
+FROM azul/zulu-openjdk-alpine:14.0.2
 
 ARG APP_DIR=/usr/app/petrol-app
 ARG JAR_FILE=./target/petrol-app-0.0.1-SNAPSHOT.jar
