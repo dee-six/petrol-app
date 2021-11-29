@@ -14,7 +14,7 @@
   <properties>
     <default.package>ch.diyamane.app.petrol.backend</default.package>
     <openapi.generator.version>5.1.0</openapi.generator.version>
-    <openapitools.version>0.2.1</openapitools.version>
+    <openapitools.version>0.2.2</openapitools.version>
     <jetty-version>9.2.9.v20150224</jetty-version>
     <servlet-api-version>2.5</servlet-api-version>
     <swagger-core-version>1.6.2</swagger-core-version>
@@ -145,7 +145,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore/>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
