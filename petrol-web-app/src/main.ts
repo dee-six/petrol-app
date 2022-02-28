@@ -6,7 +6,7 @@ import { environment } from './environments/environment';
 
 
 function log() {
-	console.log("Pertrol-web-app running in development mode !!!")
+	console.log("Petrol-web-app running in development mode !!!")
 }
 
 if (environment.production) {
