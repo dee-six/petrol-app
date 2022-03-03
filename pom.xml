@@ -25,7 +25,7 @@
     <commonsLang.version>3.3.2</commonsLang.version>
 
     <!-- Spring -->
-    <spring-boot.version>2.5.0</spring-boot.version>
+    <spring-boot.version>2.5.10</spring-boot.version>
 
     <!-- Tools -->
     <lombok.version>1.18.20</lombok.version>
