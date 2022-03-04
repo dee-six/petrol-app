@@ -28,7 +28,7 @@
     <spring-boot.version>2.6.4</spring-boot.version>
 
     <!-- Tools -->
-    <lombok.version>1.18.20</lombok.version>
+    <lombok.version>1.18.22</lombok.version>
   </properties>
 
   <modules>

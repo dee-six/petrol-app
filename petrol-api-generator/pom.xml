@@ -13,14 +13,11 @@
 
   <properties>
     <default.package>ch.diyamane.app.petrol.backend</default.package>
+
     <openapi.generator.version>5.1.0</openapi.generator.version>
-    <openapitools.version>0.2.1</openapitools.version>
-    <jetty-version>9.2.9.v20150224</jetty-version>
-    <servlet-api-version>2.5</servlet-api-version>
-    <swagger-core-version>1.6.2</swagger-core-version>
-    <servlet-api-version>2.5</servlet-api-version>
-    <cxf-version>3.3.0</cxf-version>
-    <jackson-jaxrs-version>2.9.9</jackson-jaxrs-version>
+    <openapitools.version>0.2.2</openapitools.version>
+    <swagger-core-version>1.6.5</swagger-core-version>
+
   </properties>
 
   <dependencies>
