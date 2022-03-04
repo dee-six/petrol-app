@@ -1,14 +1,34 @@
 # Petrol Web Application
-*   Functional : Web based application to determine which gas station is best suitable for my car.
-*   Technical  : Build a microservices architectured a single page web application developed Angular front end to capture and view data that communicateds with backend microservice app via API (REST).
-*   Finally migrate this to be a mobile app.
-
+*   Functional : Web based application to determine which gas station is the best suitable for my car.
+*   Technical  : Build Angular based SPA developed that communicates with a secured microservice architecture backend app via API (REST).
+*   Finally, migrate this to be a mobile app.
 
 # Design approach
-*   API first approach
-*   Use Open API GIU to define a API to meet functional and technical 
-*   Generate Java API and DTO as well as TypeScript API and default CRUD services.
-*   Implement spring-boot microservice using the generate API and DTOs.
+* API first approach
+  * Use Open API GIU to define an API to meet functional and technical
+  * Generate Java API and DTO as well as TypeScript API and default CRUD services.
+* Implement API and DTOs using spring-boot framework as secured resource application
+  * Microservice architecture,cloud enabled - api gateway, discoverable, OAuth2 authenticated secured back end application
+
+
+# Architecture Pattern
+
+## Security on Cloud Gateway Pattern - oAuth Keycloak
+### Components
+| Component                                    | Function                                                                                                 |
+|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| ``AngularWebApp (keycloak-angular-web-app)`` | Provides signup, login to Keycloak authorization server and access token based access to secured content |
+| ``KeycloakDocker``                           | Authorization server - OpenID Connect based authentication and authorization                             |
+| ``Client-gateway``                           | Spring cloud gateway based - routes, load balancers, security (authorization)                            | 
+| ``Cloud-Discovery``                          | Spring Cloud Netflix based - service discovery                                                           |
+| ``Resource``                                 | Spring boot web with security and serve security content                                                 |
+
+### Architecture
+- ``AngularWebApp (keycloak-angular-web-app) --> Client-gateway--> Authentication (Keycloak)``
+- ``AngularWebApp --> Client-gateway--> Authorization (Keycloak)``
+- ``AngularWebApp --> Client-gateway--> Cloud-Descovery --> ResourceServer with Bearer token Jwt (Keycloak)``
+
+
 
 # Junit 5 Based Tests
 

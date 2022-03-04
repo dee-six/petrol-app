@@ -25,7 +25,7 @@
     <commonsLang.version>3.3.2</commonsLang.version>
 
     <!-- Spring -->
-    <spring-boot.version>2.5.0</spring-boot.version>
+    <spring-boot.version>2.6.4</spring-boot.version>
 
     <!-- Tools -->
     <lombok.version>1.18.20</lombok.version>
@@ -53,7 +53,7 @@
       <dependency>
         <groupId>org.springdoc</groupId>
         <artifactId>springdoc-openapi-ui</artifactId>
-        <version>1.5.10</version>
+        <version>1.6.6</version>
       </dependency>
 
       <!-- Main Spring Boot Dependencies -->
