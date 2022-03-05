@@ -19,7 +19,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <jodatime.version>2.10.10</jodatime.version>
+    <jodatime.version>2.10.13</jodatime.version>
     <log4j.version>1.2.17</log4j.version>
     <slf4j.version>1.7.7</slf4j.version>
     <commonsLang.version>3.3.2</commonsLang.version>
