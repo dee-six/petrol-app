@@ -14,7 +14,7 @@
   <properties>
     <default.package>ch.diyamane.app.petrol.backend</default.package>
 
-    <openapi.generator.version>5.1.0</openapi.generator.version>
+    <openapi.generator.version>5.4.0</openapi.generator.version>
     <openapitools.version>0.2.2</openapitools.version>
     <swagger-core-version>1.6.5</swagger-core-version>
 
