@@ -1,0 +1,9 @@
+eureka:
+  client:
+    enabled: false
+
+ch:
+  diyamane:
+    app:
+      petrol:
+        initData: false
