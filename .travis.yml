@@ -13,15 +13,13 @@ jobs:
   include:
     - stage: Zulu-Install
       env: JDK=zulu17.32.13-ca-jdk17.0.2
-      script: source install-jdk.sh --url https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-jdk17.0.2-linux_x64.tar.gz
+      script:
+        - source install-jdk.sh --url https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-jdk17.0.2-linux_x64.tar.gz
+        - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
+        - cd petrol-app
+        - pwd
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-jdk: zulujdk17
-script:
-  - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
-  - cd petrol-app
-  - pwd
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  
 after_sucess:
   -  docker build -t deepak1947/petrol-app -f ./Dockerfile .
   -  docker push deepak1947/petrol-app
