@@ -11,7 +11,7 @@ script:
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/zulujdk17
-  - $TRAVIS_BUILD_DIR/install-jdk.sh -V -F 17 --emit-url true --url https://cdn.azul.com/zulu/bin/zulu10.2+3-jdk10.0.1-linux_x64.tar.gz --target $JAVA_HOME
+  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 17 --target $JAVA_HOME
   - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
   - cd petrol-app
   - pwd
