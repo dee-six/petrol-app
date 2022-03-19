@@ -6,7 +6,7 @@
 
   <parent>
     <groupId>ch.diyamane.app.petrol</groupId>
-    <artifactId>petrol-microservices</artifactId>
+    <artifactId>petrol-microservices-spa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
@@ -40,7 +40,6 @@
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-ui</artifactId>
     </dependency>
-
 
     <dependency>
       <groupId>ch.qos.logback</groupId>

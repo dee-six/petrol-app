@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>ch.diyamane.app.petrol</groupId>
-    <artifactId>petrol-microservices</artifactId>
+    <artifactId>petrol-microservices-spa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
@@ -69,7 +69,6 @@
       <artifactId>guava</artifactId>
       <version>[30.0-jre,)</version>
     </dependency>
-
 
     <!-- Testing -->
     <dependency>

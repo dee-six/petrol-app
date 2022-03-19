@@ -1,4 +1,4 @@
-package ch.diyamane.app.petrol;
+package ch.diyamane.app.petrol.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class PetrolApplication {
+public class PetrolCloudGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PetrolApplication.class, args);
+		SpringApplication.run(PetrolCloudGatewayApplication.class, args);
 	}
 
 }

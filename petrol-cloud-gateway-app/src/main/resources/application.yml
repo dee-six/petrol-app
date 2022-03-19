@@ -3,6 +3,3 @@ spring:
         enabled: false
     jpa:
         show-sql: true
-springdoc:
-    swagger-ui:
-        path: /petrol-api-ui.html

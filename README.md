@@ -1,4 +1,4 @@
-# Petrol Web Application
+# Petrol Single Page Web Application
 *   Functional : Web based application to determine which gas station is the best suitable for my car.
 *   Technical  : Build Angular based SPA developed that communicates with a secured microservice architecture backend app via API (REST).
 *   Finally, migrate this to be a mobile app.

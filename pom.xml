@@ -5,14 +5,12 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.diyamane.app.petrol</groupId>
-  <artifactId>petrol-microservices</artifactId>
+  <artifactId>petrol-microservices-spa</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>DM Petrol :: Petrol Microservices</name>
-  <description>DM :: Petrol Microservices Petrol Api defined the Api and Dtos exposes teh services for using the Petrol
-    Application. The Petrol Backend implements the Api.
-  </description>
+  <name>DM Petrol :: Petrol Microservices SPA</name>
+  <description>DM :: Petrol micro-services architecture based Angular single page web application.</description>
 
   <properties>
     <!-- Generic properties -->
@@ -41,6 +39,7 @@
     <module>petrol-api-generator</module>
     <module>petrol-cloud-discovery-app</module>
     <module>petrol-business-resource-app</module>
+    <module>petrol-user-resource-app</module>
     <module>petrol-cloud-gateway-app</module>
   </modules>
 
@@ -130,6 +129,15 @@
       <artifactId>spring-boot-devtools</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+    </dependency>
 
   </dependencies>
 
@@ -149,7 +157,6 @@
           </excludes>
         </configuration>
       </plugin>
-
 
 
       <plugin>
