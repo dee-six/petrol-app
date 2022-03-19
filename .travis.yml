@@ -14,7 +14,7 @@ jobs:
     - stage: Zulu-Install
       env: JDK=zulu17.32.13-ca-jdk17.0.2
       script:
-        - source install-jdk.sh --url https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-jdk17.0.2-linux_x64.tar.gz
+        - source install-jdk.sh --url https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-jdk17.0.2-linux_x64.tar.gz --feature 17 --license GPL
         - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
         - cd petrol-app
         - pwd
