@@ -6,8 +6,6 @@ services:
 
 jdk: zulujdk17
 script:
-  - jdk_switcher use zulujdk17
-  - # do stuff with OpenJDK 10
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/zulujdk17
