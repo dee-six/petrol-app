@@ -1,16 +1,22 @@
-sudo: required
 language: java
+sudo: false
+dist: trusty
+
+before_script:
+  - unset -v _JAVA_OPTIONS
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
 
 services:
   - docker
 
+jobs:
+  include:
+    - stage: Zulu-Install
+      env: JDK=zulu17.32.13-ca-jdk17.0.2
+      script: source install-jdk.sh --url https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-jdk17.0.2-linux_x64.tar.gz
+
 jdk: zulujdk17
 script:
-  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
-  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
-  - export JAVA_HOME=$HOME/zulujdk17
-  - export DEEPAK_HOME=$HOME
-  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 17 --target $JAVA_HOME
   - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
   - cd petrol-app
   - pwd
