@@ -9,6 +9,7 @@ script:
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/zulujdk17
+  - export DEEPAK_HOME=$HOME
   - $TRAVIS_BUILD_DIR/install-jdk.sh -F 17 --target $JAVA_HOME
   - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
   - cd petrol-app
