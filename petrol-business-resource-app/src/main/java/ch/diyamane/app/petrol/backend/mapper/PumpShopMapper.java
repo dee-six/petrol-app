@@ -1,10 +1,9 @@
 package ch.diyamane.app.petrol.backend.mapper;
 
+import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
+import ch.diyamane.app.petrol.business.dto.PumpShopDto;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
-import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
 
 public class PumpShopMapper {
 

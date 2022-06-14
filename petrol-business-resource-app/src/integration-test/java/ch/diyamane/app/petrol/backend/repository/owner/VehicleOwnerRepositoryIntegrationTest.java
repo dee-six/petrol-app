@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
 import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
-import ch.diyamane.app.petrol.backend.dto.StatusEnum;
+import ch.diyamane.app.petrol.business.dto.StatusEnum;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;

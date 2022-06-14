@@ -1,16 +1,14 @@
 package ch.diyamane.app.petrol.backend.interfaces;
 
-import ch.diyamane.app.petrol.backend.dto.StatusEnum;
 import ch.diyamane.app.petrol.backend.service.VehicleOwnerService;
+import ch.diyamane.app.petrol.business.api.VehicleOwnerApi;
+import ch.diyamane.app.petrol.business.dto.StatusEnum;
+import ch.diyamane.app.petrol.business.dto.VehicleOwnerDto;
 import java.util.List;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import ch.diyamane.app.petrol.backend.api.VehicleOwnerApi;
-import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

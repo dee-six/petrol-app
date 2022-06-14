@@ -6,10 +6,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
 import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
 import ch.diyamane.app.petrol.backend.domain.model.shop.Pumping;
-import ch.diyamane.app.petrol.backend.dto.PumpingsDto;
 import ch.diyamane.app.petrol.backend.mapper.PumpingsMapper;
 import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
 import ch.diyamane.app.petrol.backend.repository.shop.PumpingRepository;
+import ch.diyamane.app.petrol.business.dto.PumpingsDto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.transaction.Transactional;

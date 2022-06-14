@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
 import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
-import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
+import ch.diyamane.app.petrol.business.dto.PumpShopDto;
 import java.util.List;
 import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;

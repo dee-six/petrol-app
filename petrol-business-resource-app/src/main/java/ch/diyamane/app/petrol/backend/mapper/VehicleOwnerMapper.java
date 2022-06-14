@@ -2,7 +2,7 @@ package ch.diyamane.app.petrol.backend.mapper;
 
 import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
-import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
+import ch.diyamane.app.petrol.business.dto.VehicleOwnerDto;
 import java.util.stream.Collectors;
 
 

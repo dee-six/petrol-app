@@ -1,0 +1,54 @@
+eureka:
+  client:
+    enabled: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
+    status-page-url-path: /jwt/info
+    health-check-url-path: /jwt/info
+jwt:
+  user:
+    bec:
+      jwtExpirationMs: 86400000
+      jwtSecret: ezwqteztzqwezwq
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+    ch:
+      diyamane:
+        app:
+          petrol: DEBUG
+ch:
+  diyamane:
+    tutorial:
+      spring:
+        enableCors: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*, openapi, swaggerui'
+
+server:
+  port: 9193
+
+spring:
+  application:
+    name: jwt-userData-bec
+  jpa:
+    show-sql: true
+
+springdoc:
+  show-actuator: true
+  use-management-port: false
+  swagger-ui:
+    path: /rest/rest.html
+  api-docs:
+    path: /rest/api-docs
+

@@ -1,16 +1,13 @@
 package ch.diyamane.app.petrol.backend.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
-import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
 import ch.diyamane.app.petrol.backend.mapper.PumpShopMapper;
 import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
+import ch.diyamane.app.petrol.business.dto.PumpShopDto;
+import java.util.List;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor

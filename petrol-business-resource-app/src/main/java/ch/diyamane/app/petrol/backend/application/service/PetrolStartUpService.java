@@ -1,14 +1,14 @@
 package ch.diyamane.app.petrol.backend.application.service;
 
-import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
-import ch.diyamane.app.petrol.backend.dto.PumpingsDto;
-import ch.diyamane.app.petrol.backend.dto.StatusEnum;
-import ch.diyamane.app.petrol.backend.dto.VehicleDto;
-import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleRepository;
 import ch.diyamane.app.petrol.backend.repository.shop.PumpingRepository;
 import ch.diyamane.app.petrol.backend.service.PumpShopService;
 import ch.diyamane.app.petrol.backend.service.VehicleOwnerService;
+import ch.diyamane.app.petrol.business.dto.PumpShopDto;
+import ch.diyamane.app.petrol.business.dto.PumpingsDto;
+import ch.diyamane.app.petrol.business.dto.StatusEnum;
+import ch.diyamane.app.petrol.business.dto.VehicleDto;
+import ch.diyamane.app.petrol.business.dto.VehicleOwnerDto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;

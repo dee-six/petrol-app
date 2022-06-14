@@ -1,7 +1,7 @@
 package ch.diyamane.app.petrol.backend.domain.model.owner;
 
 import ch.diyamane.app.petrol.backend.domain.base.BaseEntity;
-import ch.diyamane.app.petrol.backend.dto.StatusEnum;
+import ch.diyamane.app.petrol.business.dto.StatusEnum;
 import com.google.common.collect.Sets;
 import java.util.Optional;
 import java.util.Set;

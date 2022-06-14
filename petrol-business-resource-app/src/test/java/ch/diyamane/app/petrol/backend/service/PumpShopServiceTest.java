@@ -1,8 +1,8 @@
 package ch.diyamane.app.petrol.backend.service;
 
 import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
-import ch.diyamane.app.petrol.backend.dto.PumpShopDto;
 import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
+import ch.diyamane.app.petrol.business.dto.PumpShopDto;
 import java.util.Collections;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;

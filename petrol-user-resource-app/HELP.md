@@ -18,3 +18,8 @@ The following guides illustrate how to use some features concretely:
 
 * [Service Registration and Discovery with Eureka and Spring Cloud](https://spring.io/guides/gs/service-registration-and-discovery/)
 
+# Testing
+
+## Create user 
+* curl -X POST -H 'Content-Type: application/json' -i http://localhost:9193/api/petrol/auth/signup --data '{"userName": "deepak",   "password": "password" }'
+

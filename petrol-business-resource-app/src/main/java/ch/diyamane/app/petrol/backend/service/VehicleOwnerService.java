@@ -1,10 +1,10 @@
 package ch.diyamane.app.petrol.backend.service;
 
 import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
-import ch.diyamane.app.petrol.backend.dto.StatusEnum;
-import ch.diyamane.app.petrol.backend.dto.VehicleOwnerDto;
 import ch.diyamane.app.petrol.backend.mapper.VehicleOwnerMapper;
 import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRepository;
+import ch.diyamane.app.petrol.business.dto.StatusEnum;
+import ch.diyamane.app.petrol.business.dto.VehicleOwnerDto;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,11 +17,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class VehicleOwnerService {
 
-  VehicleOwnerRepository vehicleOwnerRespository;
+  VehicleOwnerRepository vehicleOwnerRepository;
 
   public VehicleOwnerDto addVehicleOwner(VehicleOwnerDto dto) {
 
-    VehicleOwner vo = vehicleOwnerRespository.save(VehicleOwnerMapper.to(dto));
+    VehicleOwner vo = vehicleOwnerRepository.save(VehicleOwnerMapper.to(dto));
 
     dto.setId(vo.getId().intValue());
 
@@ -30,7 +30,7 @@ public class VehicleOwnerService {
 
   public List<VehicleOwnerDto> findAll() {
 
-    List<VehicleOwner> vehicleOwners = vehicleOwnerRespository.findAll();
+    List<VehicleOwner> vehicleOwners = vehicleOwnerRepository.findAll();
 
     List<VehicleOwnerDto> vehicleOwnerDtos = vehicleOwners.stream()
         .map(VehicleOwnerMapper::toDto)
@@ -41,7 +41,7 @@ public class VehicleOwnerService {
 
   public List<VehicleOwnerDto> findAllByStatus(StatusEnum status) {
 
-    List<VehicleOwner> vehicleOwners = vehicleOwnerRespository.findAll();
+    List<VehicleOwner> vehicleOwners = vehicleOwnerRepository.findAll();
 
     List<VehicleOwnerDto> vehicleOwnerDtos = vehicleOwners.stream()
         .filter(vehicleOwner -> vehicleOwner.getStatus().equals(status))
@@ -55,7 +55,7 @@ public class VehicleOwnerService {
   public VehicleOwnerDto updateOwner(VehicleOwnerDto dto) {
 
     log.debug("Request received !");
-    Optional<VehicleOwner> vo = vehicleOwnerRespository.findById(Long.valueOf(dto.getId()));
+    Optional<VehicleOwner> vo = vehicleOwnerRepository.findById(Long.valueOf(dto.getId()));
 
     if (vo.isPresent()) {
       vo.get().setName(dto.getName());
@@ -70,6 +70,6 @@ public class VehicleOwnerService {
   }
 
   public VehicleOwnerDto getOwner(Long id) {
-    return VehicleOwnerMapper.toDto(vehicleOwnerRespository.getOne(id));
+    return VehicleOwnerMapper.toDto(vehicleOwnerRepository.getOne(id));
   }
 }

@@ -1,7 +1,7 @@
 package ch.diyamane.app.petrol.backend.mapper;
 
 import ch.diyamane.app.petrol.backend.domain.model.shop.Pumping;
-import ch.diyamane.app.petrol.backend.dto.PumpingsDto;
+import ch.diyamane.app.petrol.business.dto.PumpingsDto;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;

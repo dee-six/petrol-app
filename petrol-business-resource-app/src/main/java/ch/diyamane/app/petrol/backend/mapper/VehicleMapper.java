@@ -1,7 +1,7 @@
 package ch.diyamane.app.petrol.backend.mapper;
 
 import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
-import ch.diyamane.app.petrol.backend.dto.VehicleDto;
+import ch.diyamane.app.petrol.business.dto.VehicleDto;
 
 public class VehicleMapper {
 

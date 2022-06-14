@@ -15,20 +15,18 @@
 
 ## Security on Cloud Gateway Pattern - oAuth Keycloak
 ### Components
-| Component                                    | Function                                                                                                 | Port   |
-|----------------------------------------------|----------------------------------------------------------------------------------------------------------|--------|
-| ``AngularWebApp (keycloak-angular-web-app)`` | Provides signup, login to Keycloak authorization server and access token based access to secured content | 8081   |
-| ``KeycloakDocker``                           | Authorization server - OpenID Connect based authentication and authorization                             | 8080   |
-| ``Client-Gateway``                           | Spring cloud gateway based - routes, load balancers, security (authorization)                            | 8082   |
-| ``Cloud-Discovery``                          | Spring Cloud Netflix based - service discovery                                                           | 8761   |
-| ``User Manager Resource``                    | Spring boot web to manager users                                                                         | 8084   |
-| ``Business Resource``                        | Spring boot web with security and serve security content                                                 | 8085   |
-| ``Postgresql Docker``                        | Postgresql Docker is used by KeycloakDocker as a persistence store                                       | 5432   |
+| Component                               | Function                                                                                           | Port   |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------|--------|
+| ``AngularWebApp (angular-auth-oidc-client)`` | Provides signup, login to OpenID Spring authorization server to secured content                    | 8081   |
+| ``Client-Gateway``                      | Spring cloud gateway based - routes, load balancers, security (authorization)                      | 8082   |
+| ``Cloud-Discovery``                     | Spring Cloud Netflix based - service discovery                                                     | 8761   |
+| ``User Manager Resource``               | Spring boot auhtorization server openID connect based authentication and authorization to manager users | 8084   |
+| ``Business Resource``                   | Spring boot web with security and serve security content                                           | 8085   |
 
 ### Architecture
-- ``AngularWebApp (keycloak-angular-web-app) --> Client-gateway--> Authentication (Keycloak)``
-- ``AngularWebApp --> Client-Gateway--> Authorization (Keycloak)``
-- ``AngularWebApp --> Client-Gateway--> Cloud-Descovery --> ResourceServer with Bearer token Jwt (Keycloak)``
+- ``AngularWebApp (angular-auth-oidc-client) --> Client-gateway--> Authentication (User Manager Resource)``
+- ``AngularWebApp --> Client-Gateway--> Authorization (User Manager Resource)``
+- ``AngularWebApp --> Client-Gateway--> Cloud-Discovery --> ResourceServer with Bearer token Jwt (User Manager Resource)``
 
 
 
