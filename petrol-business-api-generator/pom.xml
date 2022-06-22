@@ -10,8 +10,8 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>petrol-api-generator</artifactId>
-  <name>DM Petrol :: Petrol API Generator</name>
+  <artifactId>petrol-business-api-generator</artifactId>
+  <name>DM Petrol :: Petrol Business API Generator (WebMvc)</name>
 
   <properties>
     <business-resource.package>ch.diyamane.app.petrol.business</business-resource.package>
@@ -47,13 +47,6 @@
       <artifactId>logback-core</artifactId>
     </dependency>
 
-    <!--
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    -->
-
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -63,6 +56,7 @@
 
   <build>
     <plugins>
+
       <plugin>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -101,37 +95,7 @@
             </configuration>
           </execution>
 
-          <execution>
-            <id>generate-java-petrol-user-resource</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <inputSpec>${project.basedir}/src/main/resources/petrol-user-resource-api.yaml</inputSpec>
-              <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
-              <generatorName>spring</generatorName>
 
-              <configOptions>
-                <sourceFolder>src/main/java</sourceFolder>
-                <hideGenerationTimestamp>true</hideGenerationTimestamp>
-                <useTags>true</useTags>
-                <skipDefaultInterface>true</skipDefaultInterface>
-                <interfaceOnly>true</interfaceOnly>
-                <openApiNullable>false</openApiNullable>
-                <useBeanValidation>false</useBeanValidation>
-                <title>PetrolAppAPI</title>
-              </configOptions>
-
-              <apiPackage>${user-resource.package}.api</apiPackage>
-              <modelPackage>${user-resource.package}.dto</modelPackage>
-              <generateApiTests>false</generateApiTests>
-              <generateApiDocumentation>false</generateApiDocumentation>
-              <generateModelDocumentation>false</generateModelDocumentation>
-              <generateModelTests>false</generateModelTests>
-              <generateSupportingFiles>false</generateSupportingFiles>
-              <templateResourcePath>${project.basedir}/src/main/resources/template</templateResourcePath>
-            </configuration>
-          </execution>
 
           <execution>
             <id>generate-ts-petrol-business-resource</id>
@@ -140,24 +104,6 @@
             </goals>
             <configuration>
               <inputSpec>${project.basedir}/src/main/resources/petrol-business-resource-api.yaml</inputSpec>
-              <generatorName>typescript-angular</generatorName>
-              <output>${project.basedir}/../petrol-web-app/src/app/gen</output>
-              <skipValidateSpec>true</skipValidateSpec>
-              <configOptions>
-                <npmName>petrol-web-app</npmName>
-                <providedInRoot>true</providedInRoot>
-                <stringEnums>true</stringEnums>
-              </configOptions>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>generate-ts-petrol-user-resource</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <inputSpec>${project.basedir}/src/main/resources/petrol-user-resource-api.yaml</inputSpec>
               <generatorName>typescript-angular</generatorName>
               <output>${project.basedir}/../petrol-web-app/src/app/gen</output>
               <skipValidateSpec>true</skipValidateSpec>

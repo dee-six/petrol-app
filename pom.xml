@@ -30,17 +30,20 @@
     <!-- Spring -->
     <spring-boot.version>2.6.4</spring-boot.version>
     <spring-cloud.version>2021.0.1</spring-cloud.version>
+    <springdoc.version>1.6.9</springdoc.version>
 
     <!-- Tools -->
     <lombok.version>1.18.22</lombok.version>
   </properties>
 
   <modules>
-    <module>petrol-api-generator</module>
+    <module>petrol-business-api-generator</module>
+    <module>petrol-user-api-generator</module>
     <module>petrol-cloud-discovery-app</module>
     <module>petrol-business-resource-app</module>
     <module>petrol-user-resource-app</module>
     <module>petrol-cloud-gateway-app</module>
+    <module>petrol-auhtorization-server</module>
   </modules>
 
   <dependencyManagement>
@@ -63,12 +66,22 @@
         <scope>import</scope>
       </dependency>
 
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi</artifactId>
+        <version>${springdoc.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <!-- Springdoc-openapi -->
+      <!--
       <dependency>
         <groupId>org.springdoc</groupId>
         <artifactId>springdoc-openapi-ui</artifactId>
         <version>1.6.6</version>
       </dependency>
+      -->
 
       <!-- Main Spring Boot Dependencies -->
       <dependency>

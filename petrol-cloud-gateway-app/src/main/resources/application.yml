@@ -1,5 +1,77 @@
 spring:
-    flyway:
-        enabled: false
-    jpa:
-        show-sql: true
+  flyway:
+    enabled: false
+  jpa:
+    show-sql: true
+
+  application:
+    name: petrol-cloud-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      metrics:
+        enabled: true
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: bec-resource
+          uri: lb://petrol-business-resource
+          predicates:
+            - Path=/petrol/**
+          filters:
+            - RemoveRequestHeader=Cookie
+  security:
+    oauth2:
+      client:
+        provider:
+          spring:
+            issuerUri: http://localhost:8081
+        registration:
+          petrol-business-client-oidc:
+            provider: spring
+            clientId: petrol-business-resource-app
+            clientSecret: c788161d-dadd-4189-a1dc-09cb70d6fe74
+            authorizationGrantType: authorization_code
+            redirectUri: "http://127.0.0.1:8082/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: petrol-business-client-oidc
+          petrol-business-client-authorization-code:
+            provider: spring
+            clientId: petrol-business-resource-app
+            clientSecret: c788161d-dadd-4189-a1dc-09cb70d6fe74
+            authorizationGrantType: authorization_code
+            redirectUri: "http://127.0.0.1:8082/authorized"
+            scope: messages.read, messages.write
+            client-name: petrol-business-client-authorization-code
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*, openapi, swaggerui'
+
+
+logging:
+  level:
+    '*': INFO
+    ch:
+      diyamane:
+        app:
+          petrol: INFO
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            logging:
+              ConditionEvaluationReportLoggingListener: INFO
+        security: TRACE
+        security.oauth2: DEBUG
+
+uri: http://localhost:8085/petrol/pumping

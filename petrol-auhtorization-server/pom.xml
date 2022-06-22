@@ -4,14 +4,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <groupId>ch.diyamane.app.petrol</groupId>
     <artifactId>petrol-microservices-spa</artifactId>
+    <groupId>ch.diyamane.app.petrol</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+
   <modelVersion>4.0.0</modelVersion>
 
-  <name>DM Petrol :: Petrol Cloud Discovery App</name>
-  <artifactId>petrol-cloud-discovery-app</artifactId>
+  <artifactId>petrol-auhtorization-server</artifactId>
+  <name>DM Petrol :: Petrol Auhtorization Server</name>
 
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
@@ -21,19 +22,30 @@
   <dependencies>
 
     <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-authorization-server</artifactId>
+      <version>0.3.0</version>
+    </dependency>
+
+    <!-- Spring Boot -->
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <optional>true</optional>
     </dependency>
 
     <dependency>
@@ -41,6 +53,17 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-  </dependencies>
 
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+    </dependency>
+
+  </dependencies>
 </project>

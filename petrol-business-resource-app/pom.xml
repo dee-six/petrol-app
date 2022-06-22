@@ -23,7 +23,7 @@
     <!-- Backend-API -->
     <dependency>
       <groupId>ch.diyamane.app.petrol</groupId>
-      <artifactId>petrol-api-generator</artifactId>
+      <artifactId>petrol-business-api-generator</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
@@ -36,6 +36,11 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
     </dependency>
 
     <dependency>

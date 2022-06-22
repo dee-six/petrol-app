@@ -35,8 +35,8 @@ public class WebSecurityConfiguration {
                 .anyExchange().authenticated()
                 .and().cors()
                 .and().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(authEntryPointJwt)
-                .and().authenticationManager(authenticationManager));
+                .oauth2ResourceServer().jwt());
+
 
     return serverHttpSecurity.build();
 

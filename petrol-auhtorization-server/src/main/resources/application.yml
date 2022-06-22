@@ -1,0 +1,34 @@
+ch:
+    diyamane:
+        app:
+            petrol:
+                initData: true
+logging:
+    level:
+        '*': INFO
+        ch:
+            diyamane:
+                app:
+                    petrol: INFO
+        org:
+            springframework:
+                boot:
+                    autoconfigure:
+                        logging:
+                            ConditionEvaluationReportLoggingListener: INFO
+                security: TRACE
+                security.oauth2: DEBUG
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*, openapi, swaggerui'
+server:
+    port: 8081
+spring:
+    application:
+        name: petrol-authorization-server
+    flyway:
+        enabled: false
+    jpa:
+        show-sql: true
