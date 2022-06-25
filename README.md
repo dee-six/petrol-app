@@ -15,16 +15,15 @@
 
 ## Security on Cloud Gateway Pattern - oAuth Spring based authorization server
 ### Components
-| Component                                    | Function                                                                                                | Port  |
-|----------------------------------------------|---------------------------------------------------------------------------------------------------------|-------|
-| ``AngularWebApp (angular-auth-oidc-client)`` | Provides signup, login to OpenID Spring authorization server to secured content                         | 8080  |
-| ``Auhtorization Server``                     | Spring authorization server - OAuth2 authorization provider                                             | 8081  |
-| ``Client-Gateway``                           | Spring cloud gateway based - routes, load balancers, security (authorization)                           | 8082 |
-| ``Cloud-Discovery``                          | Spring Cloud Netflix based - service discovery                                                          | 8761  |
-| ``User API Generator``                       | API First approach - Uses Open API generator to gen api from api spec (Webflux)                         |       |
-| ``Business API Generator``                   | API First approach - Uses Open API generator to gen api from api spec (WebMVC)                          |       |
-| ``User Manager Resource``                    | Spring boot authorization server openID connect based authentication and authorization to manager users | 8083  |
-| ``Business Resource``                        | Spring boot web with security and serve security content                                                | 8084  |
+| Component                                    | Function                                                                              | Port |
+|----------------------------------------------|---------------------------------------------------------------------------------------|------|
+| ``AngularWebApp (angular-auth-oidc-client)`` | Provides signup, login to OpenID Spring authorization server to secured content       | 8080 |
+| ``Auhtorization Server``                     | Spring authorization server and User Resource Manager - OAuth2 authorization provider | 8081 |
+| ``Client-Gateway``                           | Spring cloud gateway based - routes, load balancers, security (authorization)         | 8082 |
+| ``Cloud-Discovery``                          | Spring Cloud Netflix based - service discovery                                        | 8761 |
+| ``User API Generator``                       | API First approach - Uses Open API generator to gen api from api spec (Webflux)       |      |
+| ``Business API Generator``                   | API First approach - Uses Open API generator to gen api from api spec (WebMVC)        |      |
+| ``Business Resource``                        | Spring boot web with security and serve security content                              | 8084 |
 
 ### Architecture
 - ``AngularWebApp (angular-auth-oidc-client) --> Client-gateway--> Authentication (User Manager Resource)``

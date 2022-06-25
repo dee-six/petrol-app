@@ -37,13 +37,12 @@
   </properties>
 
   <modules>
+    <module>petrol-authorization-server</module>
     <module>petrol-business-api-generator</module>
     <module>petrol-user-api-generator</module>
     <module>petrol-cloud-discovery-app</module>
     <module>petrol-business-resource-app</module>
-    <module>petrol-user-resource-app</module>
     <module>petrol-cloud-gateway-app</module>
-    <module>petrol-auhtorization-server</module>
   </modules>
 
   <dependencyManagement>

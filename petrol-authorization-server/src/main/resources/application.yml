@@ -1,0 +1,43 @@
+ch:
+  diyamane:
+    app:
+      petrol:
+        initData: true
+
+logging:
+  level:
+    '*': INFO
+    ch:
+      diyamane:
+        app:
+          petrol: INFO
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            logging:
+              ConditionEvaluationReportLoggingListener: INFO
+        security: TRACE
+        security.oauth2: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*, openapi, swaggerui'
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: petrol-authorization-server
+  flyway:
+    enabled: true
+  datasource:
+    url: jdbc:h2:mem:petrol-app-db;Mode=Oracle
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
