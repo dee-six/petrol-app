@@ -12,11 +12,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
-import org.springframework.security.oauth2.server.authorization.config.ClientSettings;
 import org.springframework.security.oauth2.server.authorization.config.TokenSettings;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ActivateRegisteredClient {
 
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final RoleManagerService roleManagerService;
   private final JpaRegisteredClientRepository jpaRegisteredClientRepository;
 
@@ -33,23 +34,43 @@ public class ActivateRegisteredClient {
   @EventListener(ApplicationReadyEvent.class)
   public void onApplicationEvent() {
 
-    RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-        .clientId("petrol-business-resource-app")
-        .clientSecret("{noop}c788161d-dadd-4189-a1dc-09cb70d6fe74")
+    RegisteredClient registeredClientCloudGateWay = RegisteredClient.withId(UUID.randomUUID().toString())
+        .clientId("petrol-cloud-gateway")
+        .clientSecret(bCryptPasswordEncoder.encode("random-secret"))
         .clientIdIssuedAt(Instant.EPOCH)
         .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
         .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
         .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-        .redirectUri("http://127.0.0.1:8082/login/oauth2/code/petrol-business-client-oidc")
+        .redirectUri("http://127.0.0.1:8082/login/oauth2/code/petrol-cloud-gateway-oidc")
         .redirectUri("http://127.0.0.1:8082/authorized")
         .scope(OidcScopes.OPENID)
-        .scope("message.read")
-        .scope("message.write")
-        .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+        .scope("petrol.read")
+        .scope("petrol.write")
+        .scope("petrol.all")
+      //  .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
         .tokenSettings(TokenSettings.builder().build())
         .build();
 
-    jpaRegisteredClientRepository.save(registeredClient);
+    jpaRegisteredClientRepository.save(registeredClientCloudGateWay);
+
+    RegisteredClient registeredClientServer = RegisteredClient.withId(UUID.randomUUID().toString())
+        .clientId("petrol-client-server")
+        .clientSecret(bCryptPasswordEncoder.encode("random-secret"))
+        .clientIdIssuedAt(Instant.EPOCH)
+        .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+        .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+        .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+        .redirectUri("http://127.0.0.1:8084/login/oauth2/code/petrol-client-server-oidc")
+        .redirectUri("http://127.0.0.1:8084/authorized")
+        .scope(OidcScopes.OPENID)
+        .scope("petrol.read")
+        .scope("petrol.write")
+        .scope("petrol.all")
+        //  .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+        .tokenSettings(TokenSettings.builder().build())
+        .build();
+
+    jpaRegisteredClientRepository.save(registeredClientServer);
 
     roleManagerService.createRoles();
     log.info("Roles master data is created successfully{}", roleManagerService.getRoles());

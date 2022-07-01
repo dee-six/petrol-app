@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 ch:
   diyamane:
     app:
@@ -17,7 +20,7 @@ logging:
           autoconfigure:
             logging:
               ConditionEvaluationReportLoggingListener: INFO
-        security: TRACE
+        security: DEBUG
         security.oauth2: DEBUG
 
 management:
@@ -25,9 +28,6 @@ management:
     web:
       exposure:
         include: '*, openapi, swaggerui'
-
-server:
-  port: 8081
 
 spring:
   application:

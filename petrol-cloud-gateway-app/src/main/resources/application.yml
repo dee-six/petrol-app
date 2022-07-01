@@ -1,3 +1,6 @@
+server:
+  port: 8082
+
 spring:
   flyway:
     enabled: false
@@ -31,25 +34,25 @@ spring:
         provider:
           spring:
             issuerUri: http://localhost:8081
+            userInfoUri:
         registration:
-          petrol-business-client-oidc:
+          petrol-cloud-gateway-oidc:
             provider: spring
-            clientId: petrol-business-resource-app
-            clientSecret: c788161d-dadd-4189-a1dc-09cb70d6fe74
+            clientId: petrol-cloud-gateway
+            clientSecret: random-secret
             authorizationGrantType: authorization_code
-            redirectUri: "http://127.0.0.1:8082/login/oauth2/code/{registrationId}"
+            redirectUri: "http://localhost:8082/login/oauth2/code/{registrationId}"
             scope: openid
-            client-name: petrol-business-client-oidc
-          petrol-business-client-authorization-code:
+            client-name: petrol-cloud-gateway-oidc
+          petrol-cloud-gateway-authorization-code:
             provider: spring
-            clientId: petrol-business-resource-app
-            clientSecret: c788161d-dadd-4189-a1dc-09cb70d6fe74
+            clientId: petrol-cloud-gateway
+            clientSecret: random-secret
             authorizationGrantType: authorization_code
-            redirectUri: "http://127.0.0.1:8082/authorized"
+            redirectUri: "http://localhost:8082/authorized"
             scope: messages.read, messages.write
-            client-name: petrol-business-client-authorization-code
-server:
-  port: 8082
+            client-name: petrol-cloud-gateway-authorization-code
+
 
 management:
   endpoints:
@@ -72,6 +75,6 @@ logging:
             logging:
               ConditionEvaluationReportLoggingListener: INFO
         security: TRACE
-        security.oauth2: DEBUG
+        security.oauth2: TRACE
 
 uri: http://localhost:8085/petrol/pumping

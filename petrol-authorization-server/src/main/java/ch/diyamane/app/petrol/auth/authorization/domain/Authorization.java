@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "AUTHORIZATION")
+@Table(name = "CLIENT_AUTHORIZATION")
 @Data
 public class Authorization {
 	@Id

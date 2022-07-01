@@ -1,10 +1,9 @@
-package ch.diyamane.app.petrol.gateway.configuration;
-
-import static org.springframework.security.config.Customizer.withDefaults;
+package ch.diyamane.app.petrol.client.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,10 +20,10 @@ public class SecurityConfiguration {
     serverHttpSecurity.authorizeExchange(
         authorizeExchangeSpec ->
             authorizeExchangeSpec
+                .pathMatchers(HttpMethod.GET, "/actuator/**", "/api/server/**").permitAll()
                 .anyExchange().authenticated()
                 .and().csrf().disable()
-                .oauth2Login(withDefaults())
-                .oauth2Client(withDefaults()));
+                .oauth2Login());
 
     return serverHttpSecurity.build();
 

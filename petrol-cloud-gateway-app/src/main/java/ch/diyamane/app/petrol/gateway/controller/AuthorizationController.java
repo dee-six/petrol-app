@@ -1,6 +1,10 @@
 
 package ch.diyamane.app.petrol.gateway.controller;
 
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.clientRegistrationId;
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
+import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -11,12 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.clientRegistrationId;
-import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 /**
  * @author Joe Grandja
@@ -30,19 +29,19 @@ public class AuthorizationController {
   private final String messagesBaseUri;
 
   public AuthorizationController(WebClient.Builder webClientBuilder, @Value("uri") String messagesBaseUri) {
-    this.webClient = webClientBuilder.baseUrl("http://localhost:8085/petrol/pumping").build();
+    this.webClient = webClientBuilder.baseUrl("http://localhost:8083/petrol/pumping").build();
     this.messagesBaseUri = messagesBaseUri;
   }
 
 
-  @GetMapping(value = "/authorize", params = "grant_type=authorization_code")
+  @GetMapping(value = "/authorize")
   public String authorizationCodeGrant(Model model, 
       @RegisteredOAuth2AuthorizedClient("petrol-business-client-oidc") OAuth2AuthorizedClient authorizedClient) {
 
     log.info(" I am here authorizationCodeGrant");
     String[] messages = this.webClient
         .get()
-        .uri("http://localhost:8085/petrol/pumping")
+        .uri("http://localhost:8083/petrol/pumping")
         .attributes(oauth2AuthorizedClient(authorizedClient))
         .retrieve()
         .bodyToMono(String[].class)

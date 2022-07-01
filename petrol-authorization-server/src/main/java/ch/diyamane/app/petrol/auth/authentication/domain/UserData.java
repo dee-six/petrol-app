@@ -25,7 +25,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "USER",
+@Table(name = "PETROL_USER",
     uniqueConstraints = {
         @UniqueConstraint(name = "UK_UserName", columnNames = "USER_NAME"),
         @UniqueConstraint(name = "UK_Email", columnNames = "EMAIL")
@@ -54,8 +54,8 @@ public class UserData {
   private String email;
 
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinTable(name = "USER_ROLE",
-      joinColumns = @JoinColumn(name = "USER_ID"),
+  @JoinTable(name = "PETROL_USER_ROLE",
+      joinColumns = @JoinColumn(name = "PETROL_USER_ID"),
       inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
   @Default
   private Set<Role> roles = new HashSet<>();

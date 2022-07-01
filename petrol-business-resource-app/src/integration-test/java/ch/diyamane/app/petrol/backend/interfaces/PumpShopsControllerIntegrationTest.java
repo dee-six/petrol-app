@@ -24,6 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -68,6 +69,7 @@ public class PumpShopsControllerIntegrationTest {
   }
 
   @Test
+  @WithMockUser(username = "deepak", authorities = { "SCOPE_petrol.read" } )
   public void givenUrl_WhenGetAll_ThenGetsAllPumpShops() throws Exception {
 
     MockHttpServletResponse response = this.mvc.perform(

@@ -28,8 +28,8 @@
     <commonsLang.version>3.3.2</commonsLang.version>
 
     <!-- Spring -->
-    <spring-boot.version>2.6.4</spring-boot.version>
-    <spring-cloud.version>2021.0.1</spring-cloud.version>
+    <spring-boot.version>2.7.1</spring-boot.version>
+    <spring-cloud.version>2021.0.3</spring-cloud.version>
     <springdoc.version>1.6.9</springdoc.version>
 
     <!-- Tools -->
@@ -43,6 +43,7 @@
     <module>petrol-cloud-discovery-app</module>
     <module>petrol-business-resource-app</module>
     <module>petrol-cloud-gateway-app</module>
+    <module>petrol-client-server</module>
   </modules>
 
   <dependencyManagement>

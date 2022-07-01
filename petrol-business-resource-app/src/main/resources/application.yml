@@ -1,3 +1,6 @@
+server:
+  port: 8083
+
 ch:
   diyamane:
     app:
@@ -36,8 +39,6 @@ spring:
         jwt:
           issuer-uri: http://localhost:8081
 
-server:
-  port: 8085
 
 springdoc:
   show-actuator: true
