@@ -21,6 +21,9 @@
     <openapitools.version>0.2.2</openapitools.version>
     <swagger-core-version>1.6.5</swagger-core-version>
 
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    
   </properties>
 
   <dependencies>
