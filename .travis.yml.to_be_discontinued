@@ -1,0 +1,21 @@
+sudo: required
+language: java
+
+services:
+  - docker
+
+jdk: zulujdk17
+script:
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
+  - export JAVA_HOME=$HOME/zulujdk17
+  - export DEEPAK_HOME=$HOME
+  - $TRAVIS_BUILD_DIR/install-jdk.sh --url https://cdn.azul.com/zulu/bin/zulu10.2+3-jdk10.0.1-linux_x64.tar.gz --target $JAVA_HOME --feature 17 --license GPL
+  - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
+  - cd petrol-app
+  - pwd
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+after_sucess:
+  -  docker build -t deepak1947/petrol-app -f ./Dockerfile .
+  -  docker push deepak1947/petrol-app

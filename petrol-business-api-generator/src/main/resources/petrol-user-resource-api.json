@@ -1,0 +1,285 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Diya Mane Petrol Single Page Portal - User Resource API",
+        "version": "1.0-oas3",
+        "contact": {
+            "name": "Deepak",
+            "email": "deepak.rampoore@gmail.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://virtserver.swaggerhub.com/petrol-app/diya-mane_petrol_single_page_portal/1.0-oas3",
+            "description": "SwaggerHub API Auto Mocking"
+        },
+        {
+            "url": "http://www.localhost.com:1010/api"
+        }
+    ],
+    "paths": {
+        "/api/petrol/auth/signup": {
+            "post": {
+                "requestBody": {
+                    "description": "Signup for Petrol Application",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SignupRequestDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Signup"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MessageDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "signupUser",
+                "description": "Add an user to Petrol Application",
+                "parameters": [],
+                "callbacks": {
+                    "newCallback": {}
+                }
+            }
+        },
+        "/api/petrol/auth/signin": {
+            "post": {
+                "requestBody": {
+                    "description": "Signin to  Petrol Application",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SigninRequestDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Signin"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JWTResponseTokenDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "signinUser",
+                "description": "Login to Petrol Application",
+                "parameters": []
+            }
+        },
+        "/api/petrol/auth/user": {
+            "get": {
+                "tags": [
+                    "UserDetails"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserDetailsDto"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "findAll",
+                "description": "Get all users available in Petrol Application. For role Admin and Moderator only",
+                "parameters": []
+            }
+        },
+        "/api/petrol/auth/user/{userName}": {
+            "get": {
+                "tags": [
+                    "UserDetails"
+                ],
+                "parameters": [
+                    {
+                        "style": "simple",
+                        "explode": false,
+                        "name": "userName",
+                        "description": "UserName",
+                        "schema": {
+                            "type": "String"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserDetailsDto"
+                                }
+                            }
+                        },
+                        "description": "Successful response"
+                    }
+                },
+                "operationId": "getUser",
+                "description": "Get user details of the requested user"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SignupRequestDto": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "minimum": 4,
+                        "maximum": 50
+                    },
+                    "email": {
+                        "type": "string",
+                        "minimum": 10,
+                        "maximum": 100
+                    },
+                    "password": {
+                        "type": "string",
+                        "minimum": 10,
+                        "maximum": 255
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RoleEnum"
+                        }
+                    }
+                }
+            },
+            "SigninRequestDto": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "minimum": 4,
+                        "maximum": 50
+                    },
+                    "password": {
+                        "type": "string",
+                        "minimum": 10,
+                        "maximum": 255
+                    }
+                }
+            },
+            "UserDetailsDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "long"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "minimum": 4,
+                        "maximum": 50
+                    },
+                    "email": {
+                        "type": "string",
+                        "minimum": 10,
+                        "maximum": 100
+                    },
+                    "password": {
+                        "type": "string",
+                        "minimum": 10,
+                        "maximum": 255
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RoleEnum"
+                        }
+                    }
+                }
+            },
+            "RoleEnum": {
+                "enum": [
+                    "ROLE_USER",
+                    "ROLE_ADMIN",
+                    "ROLE_MODERATOR"
+                ],
+                "type": "string"
+            },
+            "MessageDto": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "JWTResponseTokenDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "long"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "minimum": 4,
+                        "maximum": 50
+                    },
+                    "email": {
+                        "type": "string",
+                        "minimum": 10,
+                        "maximum": 100
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "token": {
+                        "type": "string"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RoleEnum"
+                        }
+                    }
+                }
+            }
+        },
+        "links": {},
+        "callbacks": {},
+        "securitySchemes": {}
+    },
+    "tags": [
+        {
+            "name": "Signup"
+        },
+        {
+            "name": "Signin"
+        },
+        {
+            "name": "UserDetails"
+        }
+    ],
+    "security": []
+}

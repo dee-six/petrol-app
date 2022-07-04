@@ -1,0 +1,127 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ch.diyamane.app.petrol</groupId>
+    <artifactId>petrol-microservices-spa</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>petrol-business-api-generator</artifactId>
+  <name>DM Petrol :: Petrol Business API Generator (WebMvc)</name>
+
+  <properties>
+    <business-resource.package>ch.diyamane.app.petrol.business</business-resource.package>
+    <user-resource.package>ch.diyamane.app.petrol.user</user-resource.package>
+
+    <openapi.generator.version>5.4.0</openapi.generator.version>
+    <openapitools.version>0.2.2</openapitools.version>
+    <swagger-core-version>1.6.5</swagger-core-version>
+
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>jackson-databind-nullable</artifactId>
+      <version>${openapitools.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>${swagger-core-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>${openapi.generator.version}</version>
+        <executions>
+        
+          <execution>
+            <id>generate-java-petrol-business-resource</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.basedir}/src/main/resources/petrol-business-resource-api.yaml</inputSpec>
+              <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+              <generatorName>spring</generatorName>
+
+              <configOptions>
+                <sourceFolder>src/main/java</sourceFolder>
+                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                <useTags>true</useTags>
+                <skipDefaultInterface>true</skipDefaultInterface>
+                <interfaceOnly>true</interfaceOnly>
+                <openApiNullable>false</openApiNullable>
+                <useBeanValidation>false</useBeanValidation>
+                <title>PetrolAppAPI</title>
+              </configOptions>
+
+              <apiPackage>${business-resource.package}.api</apiPackage>
+              <modelPackage>${business-resource.package}.dto</modelPackage>
+              <generateApiTests>false</generateApiTests>
+              <generateApiDocumentation>false</generateApiDocumentation>
+              <generateModelDocumentation>false</generateModelDocumentation>
+              <generateModelTests>false</generateModelTests>
+              <generateSupportingFiles>false</generateSupportingFiles>
+              <templateResourcePath>${project.basedir}/src/main/resources/template</templateResourcePath>
+            </configuration>
+          </execution>
+
+
+
+          <execution>
+            <id>generate-ts-petrol-business-resource</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.basedir}/src/main/resources/petrol-business-resource-api.yaml</inputSpec>
+              <generatorName>typescript-angular</generatorName>
+              <output>${project.basedir}/../petrol-web-app/src/app/gen</output>
+              <skipValidateSpec>true</skipValidateSpec>
+              <configOptions>
+                <npmName>petrol-web-app</npmName>
+                <providedInRoot>true</providedInRoot>
+                <stringEnums>true</stringEnums>
+              </configOptions>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+</project>

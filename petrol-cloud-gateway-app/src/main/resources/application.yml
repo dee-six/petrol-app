@@ -1,0 +1,80 @@
+server:
+  port: 8082
+
+spring:
+  flyway:
+    enabled: false
+  jpa:
+    show-sql: true
+
+  application:
+    name: petrol-cloud-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      metrics:
+        enabled: true
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: bec-resource
+          uri: lb://petrol-business-resource
+          predicates:
+            - Path=/petrol/**
+          filters:
+            - RemoveRequestHeader=Cookie
+  security:
+    oauth2:
+      client:
+        provider:
+          spring:
+            issuerUri: http://localhost:8081
+            userInfoUri:
+        registration:
+          petrol-cloud-gateway-oidc:
+            provider: spring
+            clientId: petrol-cloud-gateway
+            clientSecret: random-secret
+            authorizationGrantType: authorization_code
+            redirectUri: "http://127.0.0.1:8082/login/oauth2/code/{registrationId}"
+            scope: openid, petrol.read, petrol.write
+            client-name: petrol-cloud-gateway-oidc
+          petrol-cloud-gateway-authorization-code:
+            provider: spring
+            clientId: petrol-cloud-gateway
+            clientSecret: random-secret
+            authorizationGrantType: authorization_code
+            redirectUri: "http://127.0.0.1:8082/authorized"
+            scope: petrol.read, petrol.write
+            client-name: petrol-cloud-gateway-authorization-code
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*, openapi, swaggerui'
+
+
+logging:
+  level:
+    '*': INFO
+    ch:
+      diyamane:
+        app:
+          petrol: INFO
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            logging:
+              ConditionEvaluationReportLoggingListener: INFO
+        security: TRACE
+        security.oauth2: TRACE
+
+uri: http://localhost:8085/petrol/pumping

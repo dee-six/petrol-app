@@ -1,0 +1,59 @@
+server:
+  port: 8084
+
+spring:
+  flyway:
+    enabled: false
+  jpa:
+    show-sql: true
+
+  application:
+    name: petrol-client-server
+
+  security:
+    oauth2:
+      client:
+        provider:
+          spring:
+            issuerUri: http://localhost:8081
+        registration:
+          petrol-client-server-oidc:
+            provider: spring
+            clientId: petrol-client-server
+            clientSecret: random-secret
+            authorizationGrantType: authorization_code
+            redirectUri: "http://127.0.0.1:8084/login/oauth2/code/{registrationId}"
+            scope: openid, petrol.read, petrol.write
+            client-name: petrol-client-server-oidc
+          petrol-client-server-authorization-code:
+            provider: spring
+            clientId: petrol-client-server
+            clientSecret: random-secret
+            authorizationGrantType: authorization_code
+            redirectUri: "http://127.0.0.1:8084/authorized"
+            scope: petrol.read, petrol.write
+            client-name: petrol-client-server-authorization-code
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*, openapi, swaggerui'
+
+logging:
+  level:
+    '*': INFO
+    ch:
+      diyamane:
+        app:
+          petrol: INFO
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            logging:
+              ConditionEvaluationReportLoggingListener: INFO
+        security: TRACE
+        security.oauth2: TRACE
+
+uri: http://127.0.0.1:8085/petrol/pumping

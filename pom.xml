@@ -4,18 +4,21 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ch.diyamane.app</groupId>
-  <artifactId>petrol-microservices</artifactId>
+  <groupId>ch.diyamane.app.petrol</groupId>
+  <artifactId>petrol-microservices-spa</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>DM Petrol :: Petrol Microservices</name>
-  <description>DM :: Petrol Microservices Petrol Api defined the Api and Dtos exposes teh services for using the Petrol
-    Application. The Petrol Backend implements the Api.
-  </description>
+
+  <name>DM Petrol :: Petrol Microservices SPA</name>
+  <description>DM :: Petrol micro-services architecture based Angular single page web application.</description>
 
   <properties>
     <!-- Generic properties -->
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
+
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -25,16 +28,22 @@
     <commonsLang.version>3.3.2</commonsLang.version>
 
     <!-- Spring -->
-    <spring-boot.version>2.6.4</spring-boot.version>
+    <spring-boot.version>2.7.1</spring-boot.version>
+    <spring-cloud.version>2021.0.3</spring-cloud.version>
+    <springdoc.version>1.6.9</springdoc.version>
 
     <!-- Tools -->
     <lombok.version>1.18.22</lombok.version>
   </properties>
 
   <modules>
-    <module>petrol-api-generator</module>
-    <module>petrol-backend</module>
-    <module>petrol-app</module>
+    <module>petrol-authorization-server</module>
+    <module>petrol-business-api-generator</module>
+    <module>petrol-user-api-generator</module>
+    <module>petrol-cloud-discovery-app</module>
+    <module>petrol-business-resource-app</module>
+    <module>petrol-cloud-gateway-app</module>
+    <module>petrol-client-server</module>
   </modules>
 
   <dependencyManagement>
@@ -49,12 +58,30 @@
         <scope>import</scope>
       </dependency>
 
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi</artifactId>
+        <version>${springdoc.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <!-- Springdoc-openapi -->
+      <!--
       <dependency>
         <groupId>org.springdoc</groupId>
         <artifactId>springdoc-openapi-ui</artifactId>
         <version>1.6.6</version>
       </dependency>
+      -->
 
       <!-- Main Spring Boot Dependencies -->
       <dependency>
@@ -87,12 +114,20 @@
         <version>${jodatime.version}</version>
       </dependency>
 
-      <!-- -->
+      <!-- Testing -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
         <version>${spring-boot.version}</version>
         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers-bom</artifactId>
+        <version>1.16.3</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
 
     </dependencies>
@@ -106,6 +141,21 @@
       <artifactId>spring-boot-devtools</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -115,17 +165,16 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot.version}</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
         <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
         </configuration>
       </plugin>
+
 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -144,8 +193,25 @@
               </sources>
             </configuration>
           </execution>
+          <execution>
+            <id>add-integration-test-resources</id>
+            <phase>generate-test-resources</phase>
+            <goals>
+              <goal>add-test-resource</goal>
+            </goals>
+            <configuration>
+              <!-- Configures the resource directory of our integration tests -->
+              <resources>
+                <resource>
+                  <filtering>true</filtering>
+                  <directory>src/integration-test/resources</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
