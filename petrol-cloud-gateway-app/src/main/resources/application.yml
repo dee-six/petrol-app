@@ -41,16 +41,16 @@ spring:
             clientId: petrol-cloud-gateway
             clientSecret: random-secret
             authorizationGrantType: authorization_code
-            redirectUri: "http://localhost:8082/login/oauth2/code/{registrationId}"
-            scope: openid
+            redirectUri: "http://127.0.0.1:8082/login/oauth2/code/{registrationId}"
+            scope: openid, petrol.read, petrol.write
             client-name: petrol-cloud-gateway-oidc
           petrol-cloud-gateway-authorization-code:
             provider: spring
             clientId: petrol-cloud-gateway
             clientSecret: random-secret
             authorizationGrantType: authorization_code
-            redirectUri: "http://localhost:8082/authorized"
-            scope: messages.read, messages.write
+            redirectUri: "http://127.0.0.1:8082/authorized"
+            scope: petrol.read, petrol.write
             client-name: petrol-cloud-gateway-authorization-code
 
 
