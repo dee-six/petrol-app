@@ -5,12 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
-
-import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
-import ch.diyamane.app.petrol.business.dto.PumpShopDto;
 import java.util.List;
-import javax.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +14,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.GenericContainer;
+import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
+import ch.diyamane.app.petrol.business.dto.PumpShopDto;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest(classes = PumpShopServiceIntegrationTest.class)
 @Import({PetrolBackendConfiguration.class})
@@ -39,9 +38,8 @@ public class PumpShopServiceIntegrationTest {
 
     await().atMost(60, SECONDS).until(() -> eurekaServer != null);
 
-    PumpShopDto pumpShopDto = PumpShopDto.builder().address1("Funny-Strasse1").address2("")
-        .city("Dietikon").country("Switzerland").name("Tamoil")
-        .description("Tamoil - description").zipCode("8953").build();
+    PumpShopDto pumpShopDto = PumpShopDto.builder().address1("Funny-Strasse1").address2("").city("Dietikon")
+        .country("Switzerland").name("Tamoil").description("Tamoil - description").zipCode("8953").build();
 
     pumpShopService.save(pumpShopDto);
 
@@ -59,8 +57,7 @@ public class PumpShopServiceIntegrationTest {
     PumpShopDto pumpShop = pumpShopService.findById(firstPumpShopDto.getId().longValue());
 
     assertAll("Verify Associated Cars", () -> assertNotNull(pumpShop),
-        () -> assertEquals(pumpShop.getAddress1(), pumpShopDto.getAddress1())
-    );
+        () -> assertEquals(pumpShop.getAddress1(), pumpShopDto.getAddress1()));
 
   }
 }

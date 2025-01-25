@@ -2,18 +2,8 @@ package ch.diyamane.app.petrol.backend.interfaces;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
-import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
-import ch.diyamane.app.petrol.backend.domain.model.shop.Pumping;
-import ch.diyamane.app.petrol.backend.mapper.PumpingsMapper;
-import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
-import ch.diyamane.app.petrol.backend.repository.shop.PumpingRepository;
-import ch.diyamane.app.petrol.business.dto.PumpingsDto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import javax.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +18,15 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
+import ch.diyamane.app.petrol.backend.domain.model.shop.PumpShop;
+import ch.diyamane.app.petrol.backend.domain.model.shop.Pumping;
+import ch.diyamane.app.petrol.backend.mapper.PumpingsMapper;
+import ch.diyamane.app.petrol.backend.repository.shop.PumpShopRepository;
+import ch.diyamane.app.petrol.backend.repository.shop.PumpingRepository;
+import ch.diyamane.app.petrol.business.dto.PumpingsDto;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest(classes = {PumpShopsController.class})
 @ExtendWith({SpringExtension.class})

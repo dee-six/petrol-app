@@ -9,7 +9,7 @@ servers:
   - url: >-
       https://virtserver.swaggerhub.com/petrol-app/diya-mane_petrol_single_page_portal/1.0-oas3
     description: SwaggerHub API Auto Mocking
-  - url: 'http://www.localhost.com:1010/api'
+  - url: http://www.localhost.com:1010/api
 paths:
   /petrol/pumping:
     get:
@@ -28,7 +28,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/PumpingsDto'
           description: Successful response
-  '/petrol/pumping/byPumpshop/{id}':
+  /petrol/pumping/byPumpshop/{id}:
     get:
       tags:
         - Pumpings
@@ -109,7 +109,7 @@ paths:
       operationId: addPumpshop
       description: Add a Pumpshop
       parameters: []
-  '/petrol/pumpshop/{id}':
+  /petrol/pumpshop/{id}:
     get:
       tags:
         - PumpShops
@@ -132,7 +132,7 @@ paths:
           description: Successful response
       operationId: getPumpshop
       description: Get  Pumpshop Details
-  '/petrol/vehicleowner/byStatus/{status}':
+  /petrol/vehicleowner/byStatus/{status}:
     get:
       tags:
         - VehicleOwner
@@ -216,7 +216,7 @@ paths:
       operationId: addVehicleOwner
       description: Create a new Vehicle Owner
       parameters: []
-  '/petrol/vehicleowner/{id}':
+  /petrol/vehicleowner/{id}:
     get:
       tags:
         - VehicleOwner
@@ -286,6 +286,12 @@ components:
             $ref: '#/components/schemas/PumpingsDto'
     PumpingsDto:
       type: object
+      required:
+      - startReading
+      - endReading
+      - pumpDate
+      - petrolPumpedInLitres
+      - billPaid
       properties:
         id:
           type: integer
@@ -313,6 +319,8 @@ components:
           $ref: '#/components/schemas/PumpShopDto'
     VehicleDto:
       type: object
+      required:
+      - model
       properties:
         id:
           type: integer

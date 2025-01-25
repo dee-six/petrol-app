@@ -1,5 +1,12 @@
 package ch.diyamane.app.petrol.auth.authentication.service;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import com.google.common.collect.Sets;
 import ch.diyamane.app.petrol.auth.authentication.domain.Role;
 import ch.diyamane.app.petrol.auth.authentication.domain.UserData;
 import ch.diyamane.app.petrol.auth.authentication.mapper.UserMapper;
@@ -7,16 +14,9 @@ import ch.diyamane.app.petrol.auth.authentication.repository.UserDataRepository;
 import ch.diyamane.app.petrol.user.dto.RoleEnum;
 import ch.diyamane.app.petrol.user.dto.SignupRequestDto;
 import ch.diyamane.app.petrol.user.dto.UserDetailsDto;
-import com.google.common.collect.Sets;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
-import javax.transaction.Transactional;
+import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
@@ -52,7 +52,7 @@ public class UserManagerServiceImpl implements UserManagerService {
   private Set<Role> getRoles(SignupRequestDto signupRequestDto) {
 
     if (signupRequestDto.getRoles() == null) {
-      return Sets.newHashSet(roleManagerService.getRoleByName(RoleEnum.USER.name()));
+      return Sets.newHashSet(roleManagerService.getRoleByName(RoleEnum.ROLE_USER.name()));
     }
     return signupRequestDto.getRoles().stream().map(s -> roleManagerService.getRoleByName(s.name()))
         .collect(Collectors.toSet());

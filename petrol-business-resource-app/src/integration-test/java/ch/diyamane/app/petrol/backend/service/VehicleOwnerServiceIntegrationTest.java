@@ -3,16 +3,7 @@ package ch.diyamane.app.petrol.backend.service;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
-import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
-import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
-import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRepository;
-import ch.diyamane.app.petrol.business.dto.StatusEnum;
-import ch.diyamane.app.petrol.business.dto.VehicleOwnerDto;
 import java.util.List;
-import javax.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
+import ch.diyamane.app.petrol.backend.configuration.PetrolBackendConfiguration;
+import ch.diyamane.app.petrol.backend.domain.model.owner.Vehicle;
+import ch.diyamane.app.petrol.backend.domain.model.owner.VehicleOwner;
+import ch.diyamane.app.petrol.backend.repository.owner.VehicleOwnerRepository;
+import ch.diyamane.app.petrol.business.dto.StatusEnum;
+import ch.diyamane.app.petrol.business.dto.VehicleOwnerDto;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest(classes = VehicleOwnerServiceIntegrationTest.class)
 @Import({PetrolBackendConfiguration.class})

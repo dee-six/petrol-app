@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
-import org.springframework.security.oauth2.server.authorization.config.TokenSettings;
+import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -47,7 +47,6 @@ public class ActivateRegisteredClient {
         .scope("petrol.read")
         .scope("petrol.write")
         .scope("petrol.all")
-      //  .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
         .tokenSettings(TokenSettings.builder().build())
         .build();
 
@@ -77,7 +76,7 @@ public class ActivateRegisteredClient {
 
     userManagerService.createUserData(
         SignupRequestDto.builder().userName("deepak").password("password").email("me@yahoo.com")
-            .roles(Collections.singletonList(RoleEnum.USER)).build());
+            .roles(Collections.singletonList(RoleEnum.ROLE_USER)).build());
 
   }
 }

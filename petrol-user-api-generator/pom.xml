@@ -16,43 +16,24 @@
   <properties>
     <business-resource.package>ch.diyamane.app.petrol.business</business-resource.package>
     <user-resource.package>ch.diyamane.app.petrol.user</user-resource.package>
-
-    <openapi.generator.version>5.4.0</openapi.generator.version>
-    <openapitools.version>0.2.2</openapitools.version>
-    <swagger-core-version>1.6.5</swagger-core-version>
-
   </properties>
 
   <dependencies>
 
-    <dependency>
-      <groupId>org.openapitools</groupId>
-      <artifactId>jackson-databind-nullable</artifactId>
-      <version>${openapitools.version}</version>
+	<dependency>
+	    <groupId>io.swagger.core.v3</groupId>
+	    <artifactId>swagger-annotations</artifactId>
+	</dependency>    
+	
+	<dependency>
+	    <groupId>io.swagger.parser.v3</groupId>
+	    <artifactId>swagger-parser</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>io.swagger</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <version>${swagger-core-version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-webflux-ui</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
-    </dependency>
-
-    <!--
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    -->
 
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -66,7 +47,6 @@
       <plugin>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>${openapi.generator.version}</version>
         <executions>
         
           <execution>
@@ -89,6 +69,7 @@
                 <openApiNullable>false</openApiNullable>
                 <useBeanValidation>false</useBeanValidation>
                 <title>PetrolAppAPI</title>
+                <useSpringBoot3>true</useSpringBoot3>                
               </configOptions>
 
               <apiPackage>${user-resource.package}.api</apiPackage>
