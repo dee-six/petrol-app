@@ -98,7 +98,6 @@
               <generateModelDocumentation>false</generateModelDocumentation>
               <generateModelTests>false</generateModelTests>
               <generateSupportingFiles>false</generateSupportingFiles>
-              <!-- <templateResourcePath>${project.basedir}/src/main/resources/template</templateResourcePath> -->
             </configuration>
           </execution>
 

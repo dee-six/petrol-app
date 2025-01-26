@@ -99,6 +99,8 @@ components:
   schemas:
     SignupRequestDto:
       type: object
+      required:
+      - userName
       properties:
         userName:
           type: string
@@ -118,6 +120,8 @@ components:
             $ref: '#/components/schemas/RoleEnum'
     SigninRequestDto:
       type: object
+      required:
+      - userName
       properties:
         userName:
           type: string
@@ -129,6 +133,8 @@ components:
           maximum: 255
     UserDetailsDto:
       type: object
+      required:
+      - userName
       properties:
         id:
           type: long
@@ -156,11 +162,15 @@ components:
       type: string
     MessageDto:
       type: object
+      required:
+      - message	  
       properties:
         message:
           type: string
     JWTResponseTokenDto:
       type: object
+      required:
+      - userName
       properties:
         id:
           type: long

@@ -69,7 +69,12 @@
                 <openApiNullable>false</openApiNullable>
                 <useBeanValidation>false</useBeanValidation>
                 <title>PetrolAppAPI</title>
-                <useSpringBoot3>true</useSpringBoot3>                
+                <useSpringBoot3>true</useSpringBoot3>
+                <additionalModelTypeAnnotations>
+                  @lombok.Data
+                  @lombok.Builder
+                  @lombok.AllArgsConstructor
+                </additionalModelTypeAnnotations>                            
               </configOptions>
 
               <apiPackage>${user-resource.package}.api</apiPackage>
@@ -79,7 +84,6 @@
               <generateModelDocumentation>false</generateModelDocumentation>
               <generateModelTests>false</generateModelTests>
               <generateSupportingFiles>false</generateSupportingFiles>
-              <templateResourcePath>${project.basedir}/src/main/resources/template</templateResourcePath>
             </configuration>
           </execution>
 
@@ -104,6 +108,16 @@
         </executions>
       </plugin>
 
+	  <plugin>
+	  	<groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>repackage</id>
+                    <phase>none</phase> 
+                </execution>
+            </executions>
+       </plugin>
     </plugins>
 
   </build>
