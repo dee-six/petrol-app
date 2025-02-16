@@ -4,9 +4,11 @@ package ch.diyamane.app.petrol.gateway.controller;
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.clientRegistrationId;
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.codec.json.Jackson2JsonDecoder;
+import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.security.oauth2.core.OAuth2Error;
@@ -29,13 +31,18 @@ public class AuthorizationController {
   private final String messagesBaseUri;
 
   public AuthorizationController(WebClient.Builder webClientBuilder, @Value("uri") String messagesBaseUri) {
-    this.webClient = webClientBuilder.baseUrl("http://localhost:8083/petrol/pumping").build();
+    this.webClient = webClientBuilder.baseUrl("http://localhost:8083/petrol/pumping")
+        .codecs(clientCodecConfigurer -> {
+          clientCodecConfigurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder());
+          clientCodecConfigurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder());
+        })
+        .build();
     this.messagesBaseUri = messagesBaseUri;
   }
 
 
   @GetMapping(value = "/authorize")
-  public String authorizationCodeGrant(Model model, 
+  public String authorizationCodeGrant(Model model,
       @RegisteredOAuth2AuthorizedClient("petrol-business-client-oidc") OAuth2AuthorizedClient authorizedClient) {
 
     log.info(" I am here authorizationCodeGrant");

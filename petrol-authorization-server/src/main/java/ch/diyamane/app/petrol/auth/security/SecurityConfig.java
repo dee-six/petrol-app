@@ -20,7 +20,7 @@ public class SecurityConfig {
   public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
       throws Exception {
     http
-        .authorizeHttpRequests(authorize -> authorize.antMatchers(HttpMethod.GET, "/actuator/**", "/api/server/**").permitAll())
+        .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.GET, "/actuator/**", "/api/server/**").permitAll())
         .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
 
         // Form login handles the redirect to the login page from the

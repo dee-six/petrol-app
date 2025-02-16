@@ -5,10 +5,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -19,13 +21,13 @@ public class SecurityConfiguration {
   public SecurityWebFilterChain configurationSecurityFilterChain(ServerHttpSecurity serverHttpSecurity) {
 
     serverHttpSecurity.authorizeExchange(
-        authorizeExchangeSpec ->
-            authorizeExchangeSpec
-                .anyExchange().authenticated()
-                .and().csrf().disable()
-                .oauth2Login(withDefaults())
-                .oauth2Client(withDefaults()));
+            authorizeExchangeSpec ->
+                authorizeExchangeSpec
+                    .anyExchange().authenticated())
+        .oauth2Login(withDefaults())
+        .oauth2Client(withDefaults());
 
+    serverHttpSecurity.csrf(csrfSpec -> csrfSpec.disable());
     return serverHttpSecurity.build();
 
   }
@@ -35,4 +37,11 @@ public class SecurityConfiguration {
     return new BCryptPasswordEncoder();
   }
 
+
+  @Bean
+  public RestTemplate getRestTemplate() {
+    RestTemplate restTemplate = new RestTemplate();
+    restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+    return restTemplate;
+  }
 }

@@ -62,10 +62,10 @@ public class PetrolStartUpService {
         .build();
 
     VehicleDto bmw = VehicleDto.builder().model("BMW X Xrive").build();
-    deepakVehicleOwnerDto.addOwnedVehiclesItem(bmw);
+    deepakVehicleOwnerDto.getOwnedVehicles().add(bmw);
 
     VehicleDto mini = VehicleDto.builder().model("Mini").build();
-    deepakVehicleOwnerDto.addOwnedVehiclesItem(mini);
+    deepakVehicleOwnerDto.getOwnedVehicles().add(mini);
 
     vehicleOwnerService.addVehicleOwner(deepakVehicleOwnerDto);
 
@@ -89,7 +89,7 @@ public class PetrolStartUpService {
         .milagePer100Unit(BigDecimal.valueOf(7)).petrolPricePerLiter(BigDecimal.valueOf(1.31))
         .petrolPumpedInLitres(BigDecimal.valueOf(50.34)).pumpDate(LocalDate.now()).build();
 
-    pumpShopDto.addPumpingsItem(pump);
+    pumpShopDto.getPumpings().add(pump);
 
     pumpShopService.save(pumpShopDto);
 

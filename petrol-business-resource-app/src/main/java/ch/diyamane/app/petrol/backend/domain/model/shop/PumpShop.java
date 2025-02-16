@@ -1,21 +1,17 @@
 package ch.diyamane.app.petrol.backend.domain.model.shop;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import com.google.common.collect.Sets;
-
 import ch.diyamane.app.petrol.backend.domain.base.BaseEntity;
+import com.google.common.collect.Sets;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -52,14 +48,7 @@ public class PumpShop extends BaseEntity<PumpShop> {
 	@Builder.Default
 	private Set<Pumping> pumpings = Sets.newConcurrentHashSet();
 	
-	
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public void addPumpings(@NotNull Set<Pumping> pumpings) {
 		getPumpings().addAll(pumpings);
